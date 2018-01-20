@@ -1,6 +1,9 @@
 {
   "name": "bright_baby",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.11.x"
+  },
   "scripts": {
     "start": "node server",
     "heroku-postbuild": "cd client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
@@ -16,5 +19,17 @@
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshsmith27/BrightBaby"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "create-react-app",
+    "react"
+  ],
+  "license": "MIT",
+  "devDependencies": {}
 }
