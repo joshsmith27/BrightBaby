@@ -1,8 +1,11 @@
+
 {
   "name": "bright-baby",
   "version": "0.1.0",
-  "proxy": "http://localhost:5000/",
   "private": true,
+  "devDependencies": {
+    "react-scripts": "0.9.5"
+  },
   "dependencies": {
     "axios": "^0.17.1",
     "react": "^16.0.0",
@@ -17,5 +20,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "proxy": "http://localhost:5000/"
 }
