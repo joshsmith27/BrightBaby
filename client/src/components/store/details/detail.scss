@@ -1,0 +1,72 @@
+.details-main-container{
+    width:85%;
+    margin: auto;
+    margin-top: 150px;
+
+    p{
+        margin: 0;
+    }
+    .detail-details {
+        width: 45%;
+    }
+    
+    .detail-flex-container {
+        display: flex;
+        justify-content: space-between
+    }
+    
+    .detail-image {
+        height:  250px;
+        width: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .name {
+        font-size: 25px;
+    }
+    .biggerButton {
+        margin-top: 0px;
+        font-size: 15px;
+        width: 46%;
+        max-width: 108px;
+    }
+
+    .display-flex {
+        width: 34%;
+        margin-left: 10px;
+        margin-top: 4px;
+    }
+
+    input.quanity-input {
+        height: 50%;
+        width: 29%;
+        margin-left: 4px;
+    }
+
+    .button-quanity-container {
+        margin-top: 21px;
+        display: flex;
+    }
+
+    .additional-details-container {
+        width: 92%;
+        margin: auto;
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+
+    .price{
+        font-size: 20px;
+        margin-bottom: 15px;
+        margin-top: 1px;
+        font-weight: bold;
+    }
+    .description{
+        text-align: justify;
+        width: 90%;   
+    }
+    .more-information{
+        margin-bottom: 15px;
+    }
+}

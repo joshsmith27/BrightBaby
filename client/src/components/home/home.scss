@@ -1,0 +1,33 @@
+#hexagon{
+  width:100px;
+  height: 100px;
+}
+.odd{
+    margin-left: 93px;
+    margin-top: -45px;
+    margin-bottom: -18px;
+}
+.odd2 {
+    margin-left: 277px;
+    margin-top: -40px;
+}
+.odd1 {
+    margin-left: 186px;
+    margin-top: -45px;
+}
+.Home-Container{
+  width: 62%;
+  margin: auto;
+}
+.hexa {
+  height: 200px;
+  margin-left: 10px;
+  background-size: contain;
+  cursor: pointer;
+  stroke: white !important;
+  stroke-width: 1 !important;
+  image {
+    height: 105%;
+    width: 116%;
+  }
+}

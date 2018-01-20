@@ -1,0 +1,83 @@
+.App{
+
+  img{
+    width: 100%;
+    margin: auto;
+  }
+  .logo-container{
+
+    display: -ms-flexbox;
+    /* display: flex; */
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50%;
+    height: 200px;
+    margin: auto;
+    -ms-flex-pack: center;
+
+  }
+  .cart-text {
+      height: 17.1px;
+      width: 27px;
+      font-size: 8px;
+      padding-top: 10.1px;
+      border-radius: 46px;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: center;
+      justify-content: center;
+      border: 1px solid #8c8c8c;
+      position: absolute;
+      background-color: white;
+      top: 6px;
+      right: 20px;
+}
+
+.cart-container {
+  position: fixed;
+  width: 100%;
+}
+
+
+.cart-quanity {
+  font-size: 8px;
+  width: 7px;
+  height: 10px;
+  padding-top: 0px;
+  padding-left: 2.35px;
+  border-radius: 50px;
+  border: solid 1px grey;
+  top: 19px;
+  left: -1px;
+  z-index: 2;
+  background: white;
+  position: absolute;
+}
+
+
+  .Links{
+    text-decoration: none;
+    color: $Gray
+  }
+  nav.nav-container {
+    width: 27%;
+    margin: 30px auto;
+    margin-top: -20px;
+    text-align: center;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly;
+    border-bottom: none;
+  }
+  nav.nav-container > a {
+    text-decoration: none;
+    color: $Gray;
+    font-family: $Primary-font;
+    height: 21px;
+    border-bottom: solid 1px white;
+  }
+  nav.nav-container > a:hover {
+    font-weight: bold;
+  }
+}

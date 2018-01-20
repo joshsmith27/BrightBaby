@@ -1,0 +1,47 @@
+.ProductImage {
+    border: 1px solid;
+    background-position: center;
+    background-size: cover;
+    border-radius: 0px;
+    width: 100%;
+    max-width: 220px;
+    height: 220px;
+    margin: auto;
+}
+
+.ProductImage:hover {
+  cursor: pointer;
+}
+.price{
+    font-weight: lighter;
+    color: $Purple;
+}
+
+.item-detail-container {   
+    width: 100%;
+    max-width: 220px;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+}
+.item-detail-container:hover {
+    cursor: pointer;
+    
+}
+
+.item-detail-container > * {
+    margin: 0;
+   
+}
+
+.item-main-container {
+    width: 50%;
+    display: block;
+    position: relative;
+    margin-bottom: 115px;
+    text-align: center;
+}
+.addToCartButton {
+    margin-top: 10px;
+    padding: 7px;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "bright_baby",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server",
+    "heroku-postbuild": "cd client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
+  "dependencies": {
+    "express": "^4.16.2",
+    "cors": "^2.8.4",
+    "massive": "^4.6.3"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0"
+  }
+}

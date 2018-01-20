@@ -1,0 +1,53 @@
+@import "variables";
+body{
+  font-family: $Primary-font;
+  background: white;
+  color: $Gray;
+  border-radius: 4px; 
+}
+
+p{
+  margin: 0px;
+}
+
+.display-flex{
+  display: flex;
+}
+
+.min-width-div{
+  min-width: 265px;
+}
+
+.hover:hover{
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button{
+  border-radius: 4px;
+  background: $Yellow;
+  color: $White;
+  border: none;
+  font-size:10px;
+}
+button:hover{
+  cursor: pointer;
+}
+.Yellow-Text {
+  color: $Yellow;
+  font-weight: bold;
+}
+.Purple-Text {
+  color: $Purple;
+}
+.Normal-Text {
+  color: $Gray;
+  text-align: justify;
+}
+@import "components/app";
+@import "components/store/cart/cart";
+@import "components/store/store";
+@import "components/store/item/item";
+@import "components/store/details/detail";
+@import "components/home/home";
+@import "components/admin/admin";
