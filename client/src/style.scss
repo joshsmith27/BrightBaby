@@ -5,13 +5,26 @@ body{
   color: $Gray;
   border-radius: 4px; 
 }
-
+body *{
+  font-family: $Primary-font; 
+}
 p{
   margin: 0px;
 }
 
 .display-flex{
   display: flex;
+  justify-content: space-around;
+}
+
+.input{
+  border: none;
+}
+
+.textarea {
+  border: none;
+  font-size: 14px;
+  resize: vertical;
 }
 
 .min-width-div{
@@ -51,3 +64,4 @@ button:hover{
 @import "components/store/details/detail";
 @import "components/home/home";
 @import "components/admin/admin";
+@import "components/admin/adminItemForm/adminItemForm";

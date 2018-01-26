@@ -12,7 +12,6 @@ class Item extends Component {
           <div className="ProductImage" style={{backgroundImage: "url(" + this.props.productImage + ")"}}/>
           <div className="item-detail-container">
             <h4>{this.props.title}</h4>
-            
             <p className="price">{this.props.price}</p>
           </div>
         </Link>

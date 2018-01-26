@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Item from './item/item';
 class Store extends Component {
 	render() {
+
 		return (
 			<div className ="store-main-container">
 			<p className="Yellow-Text store-header">STORE</p>
