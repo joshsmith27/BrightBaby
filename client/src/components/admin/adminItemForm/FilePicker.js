@@ -4,50 +4,56 @@ class FilePicker extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        image: '',
+        image: this.props.defaultImage,
+        formButtonText: 'VIEW',
       }
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(event) {
-      debugger
       event.preventDefault();
       function getBase64(file) {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-          return(reader.result);
+          HelloWorld(reader.result)
         };
         reader.onerror = function (error) {
           console.log('Error: ', error);
         };
      }    
-     var myPromise = new Promise((Resolve, Reject)=>{
-      Resolve(getBase64(this.fileInput.files[0]));
-     });
-     myPromise.then((response)=>{
-       this.setState({image:response});
-     })
+     function HelloWorld(info){
+      this.setState({
+        image:info,
+      });
     }
-  
+
+    HelloWorld = HelloWorld.bind(this);
+    getBase64(this.fileInput.files[0])
+    }
+
+
     render() {
       return (
         <div>
-          <img src={this.state.image} alt="stuff"/>
+          <div className = "adminForm-image" style={{backgroundImage: `url('${this.state.image}')`}}>
+					</div>
           <form
             onSubmit={this.handleSubmit}>
             <label>
               Upload file:
+              </label>
+              <br/>
               <input
                 type="file"
                 ref={input => {
                   this.fileInput = input;
                 }}
               />
-            </label>
+           
             <br />
             <button type="submit">
-              Submit
+              {this.state.formButtonText}
             </button>
           </form>
         </div>

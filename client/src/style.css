@@ -369,4 +369,15 @@ button:hover {
   width: 100%;
   height: 150px; }
 
+.image-price-container {
+  width: 93%;
+  margin: auto; }
+
+.adminForm-image {
+  height: 250px;
+  width: 250px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center; }
+
 /*# sourceMappingURL=style.css.map */

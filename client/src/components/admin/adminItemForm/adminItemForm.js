@@ -22,10 +22,8 @@ class AdminItemForm extends Component {
 	render() {
 		return (
 			<div className="details-main-container">
-				<div className="detail-flex-container">
-					{/* <div className = "detail-image" style={{backgroundImage: 'url(' + this.props.details.productImage + ')'}}></div> */}
-					<div className = "detail-image" style={{backgroundImage: `url('${this.state.image}')`}}>
-					</div>
+				<div className="detail-flex-container image-price-container">
+				<FilePicker defaultImage ="https://i5.walmartimages.com/asr/0c2179ec-ca15-41ff-bc40-13664c483d41_1.94cf4cd699abaf16947ded5f3b462de2.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF"/>
 					
 					<div className = "detail-details">
 						{/* <p className="Yellow-Text name">{this.props.details.productName}</p>
@@ -47,7 +45,7 @@ class AdminItemForm extends Component {
 						<p>Qty:</p>
 						<input type="number" className="quanity-input" value={this.state.productQuanity}/>
 					</div>
-					<FilePicker/>
+					
 					<br/>
 					<br/>
 					<button className="addToCartButton biggerButton" onClick={() => this.addToCart(this.props.productId)}>Save</button>
