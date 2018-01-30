@@ -1,18 +1,10 @@
-import {GET_DETAILS} from 'constants';
+import {Get_Details, Get_Products} from  './Products/product_actions';
+import {Get_UserInfo, Get_Cart} from  './User/user_actions';
 
-import axios from 'axios';
+//////////// Get action /////////////////
+export const GetDetails = Get_Details;
+export const GetProducts = Get_Products;
+export const GetUserInfo = Get_UserInfo;
+export const GetCart = Get_Cart;
 
-const baseUrl = 'api/';
-
-export function Get_Details (id){
-	axios.get(`${baseUrl}/getDetails/${id}`)
-		.then(function (response) {
-			return {
-				type: GET_DETAILS,
-				payload: response.data
-			};
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-}
+/////////// Post Action  ////////////////

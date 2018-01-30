@@ -11,8 +11,7 @@ p {
   margin: 0px; }
 
 .display-flex {
-  display: flex;
-  justify-content: space-around; }
+  display: flex; }
 
 .input {
   border: none; }
@@ -312,7 +311,8 @@ button:hover {
     font-size: 30px;
     font-weight: bolder; }
   .admin-main-container .admin-item-main-container {
-    width: 33%; }
+    width: 33%;
+    text-align: center; }
   .admin-main-container .admin-subTitle {
     text-align: center;
     font-size: 12px;

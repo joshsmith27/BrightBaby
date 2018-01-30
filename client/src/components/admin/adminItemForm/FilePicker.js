@@ -12,15 +12,18 @@ class FilePicker extends Component {
 
     handleSubmit(event) {
       event.preventDefault();
+      
       function getBase64(file) {
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-          HelloWorld(reader.result)
-        };
-        reader.onerror = function (error) {
-          console.log('Error: ', error);
-        };
+        if(file){
+          var reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = function () {
+            HelloWorld(reader.result)
+          };
+          reader.onerror = function (error) {
+            console.log('Error: ', error);
+          };
+        }
      }    
      function HelloWorld(info){
       this.setState({

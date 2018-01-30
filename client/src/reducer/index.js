@@ -1,5 +1,9 @@
-import { createStore, combineReducers } from 'redux';
-import {details} from './get_reducer';
 
-export default combineReducers( {details} );
+import { combineReducers } from 'redux';
+import {details, products} from './product_reducer';
+import {userInfo, cart} from './user_reducer';
+import {error} from './error_reducer'
+const rootReducer = combineReducers({details, products, userInfo, cart, error});
+
+export default rootReducer;
 

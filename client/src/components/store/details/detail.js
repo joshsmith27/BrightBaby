@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import {Get_Details} from '../../../actions/action';
+import {GetDetails} from '../../../actions/action';
 
 class Details extends Component {
 	constructor(props){
@@ -17,6 +17,11 @@ class Details extends Component {
 		});
 	}
 	
+	componentWillMount(){
+		const id =this.props.match.params.id;
+		this.props.GetDetails(id);
+	}
+
 	render() {
 		return (
 			<div className="details-main-container">
@@ -53,7 +58,7 @@ function mapStateToProps({details}){
 	return {details};
 }
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({Get_Details}, dispatch);
+	return bindActionCreators({GetDetails}, dispatch);
 }
   
 export default connect(mapStateToProps, mapDispatchToProps)(Details);
