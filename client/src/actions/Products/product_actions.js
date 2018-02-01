@@ -5,7 +5,7 @@ const baseUrl = 'api/products';
 export function Get_Details (id){
 	let request = [];
 	let type = GET_DETAILS;
-	axios.get(`${baseUrl}/getDetails/${id}`)
+	axios.get(`${baseUrl}/getdetails/${id}`)
 	.then(function (response) {
 		type = GET_DETAILS;
 		request = response;
@@ -21,19 +21,9 @@ export function Get_Details (id){
 };
 
 export function Get_Products (){
-	let request = [];
-	let type = GET_PRODUCTS;
-	axios.get(`https://swapi.co/api/people/1`)
-		.then(function (response) {
-			type = GET_PRODUCTS;
-			request = response;
-		})
-		.catch(function (error) {
-			type = ERROR;
-			request = error;
-		 });
-		 return {
-			 type,
-			 payload: request,
-		 }
+	const request = axios.get(`${baseUrl}/getproducts`);	
+	return {
+		type: GET_PRODUCTS,
+		payload: request,
+	}
 }

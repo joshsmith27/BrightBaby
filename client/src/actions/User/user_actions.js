@@ -3,33 +3,17 @@ import axios from 'axios';
 const baseUrl = 'api/user';
 
 export function Get_UserInfo (){
-	axios.get(`${baseUrl}/getUserInfo`)
-		.then(function (response) {
-			return {
-				type: GET_USERINFO,
-				payload: response.data
-			};
-		})
-		.catch(function (error) {
-			return {
-				type: ERROR,
-				payload: error.response.data
-			}
-		});
+	const request = axios.get(`${baseUrl}/getUserInfo`);	
+	return {
+		type: GET_USER_CART,
+		payload: request,
+	}
 }
 
 export function Get_Cart (){
-	axios.get(`${baseUrl}/getCart`)
-		.then(function (response) {
-			return {
-				type: GET_USER_CART,
-				payload: response.data
-			};
-		})
-		.catch(function (error) {
-			return {
-				type: ERROR,
-				payload: error.response.data
-			}
-		});
+	const request = axios.get(`${baseUrl}/getCart`);	
+	return {
+		type: GET_USER_CART,
+		payload: request,
+	}
 }
