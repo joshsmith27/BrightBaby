@@ -26,9 +26,11 @@ class FilePicker extends Component {
         }
      }    
      function HelloWorld(info){
+       this.props.saveImage(info);
       this.setState({
         image:info,
       });
+      
     }
 
     HelloWorld = HelloWorld.bind(this);

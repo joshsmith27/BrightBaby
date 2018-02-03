@@ -9,12 +9,14 @@ class AdminItemForm extends Component {
 		super(props);
 		this.state = {
 			productQuanity: 1,
-			title: this.props.title,
-			price: this.props.price,
-			description:this.props.description,
-			moreInfomation: this.props.moreInfomations
+			title: this.props.details.title,
+			price: this.props.details.price,
+			description:this.props.details.description,
+			moreInfomation: this.props.details.moreInfomations,
+			productImage: this.props.details.ProductImage
 		};
 		this.changeInput = this.changeInput.bind(this);
+		this.saveImage = this.saveImage.bind(this)
 	}
 	changeInput(e, prop){
 		e.preventDefault();
@@ -22,16 +24,27 @@ class AdminItemForm extends Component {
 			[prop]: e.target.value
 		});
 	}
+
+	saveImage(base64){
+		debugger
+		this.setState({
+			productImage:base64
+		})
+	}
+
+	componentWillMount(){
+		const id = this.props.match.params.id;
+		this.props.GetDetails(id);
+	}
+
 	render() {
+		debugger
 		return (
 			<div className="details-main-container">
 				<div className="detail-flex-container image-price-container">
-				<FilePicker defaultImage ="https://i5.walmartimages.com/asr/0c2179ec-ca15-41ff-bc40-13664c483d41_1.94cf4cd699abaf16947ded5f3b462de2.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF"/>
+				<FilePicker defaultImage={this.state.productImage} saveImage={this.saveImage}/>
 					
 					<div className = "detail-details">
-						{/* <p className="Yellow-Text name">{this.props.details.productName}</p>
-						<p className="purple-Text price">{this.props.details.price}</p>
-						<p className="normal-Text description">{this.props.details.description}</p> */}
 						<input placeholder="Title..." className="input Yellow-Text name" value={this.state.title} />
 						<br/>
 						<input placeholder="Price..." className="input Purple-Text price"value={this.state.price}/>
@@ -40,9 +53,7 @@ class AdminItemForm extends Component {
 				</div>
 				<div className = "additional-details-container">
 					<p className="Yellow-Text more-information">MORE INFORMATION</p>
-					{/* <p className ="Normal-Text">{this.props.details.additionalDetails}</p> */}
 					<textarea placeholder="More Information..." className ={this.state.price}/>
-					
 				</div>
 				<div className="saveQuanity-container">
 					<div className="display-flex">

@@ -11,7 +11,6 @@ class Cart extends Component {
   }
 
   render() {
-    debugger
     let CartItems;
 		if(this.props.cart && typeof this.props.cart !== 'string' ){
 			CartItems = this.props.cart.map((e)=>{
