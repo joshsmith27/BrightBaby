@@ -4,9 +4,13 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const massive = require('massive');
-// require('dotenv').config();
+const productsEndpoints = require('./controllers/productsController.js')
 
-
+require('dotenv').config();
+massive( process.env.CONNECTION_STRING )
+.then( (dbInstance) =>{
+    app.set('db', dbInstance);
+  });
 
 const app = express();
 app.use(express.static(path.resolve(__dirname, '../client/build')));

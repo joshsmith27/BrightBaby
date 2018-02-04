@@ -20,6 +20,12 @@ p{
   border: none;
 }
 
+textarea {
+  width: 100%;
+  border: none;
+  font-family: $Primary-font; 
+}
+
 .textarea {
   border: none;
   font-size: 14px;

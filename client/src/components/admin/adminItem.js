@@ -17,7 +17,7 @@ class NewItemForm extends Component {
 		let EditAdd = !this.state.Edit ? <p></p> : <p ><span className="Purple-Text hover" onClick={()=>this.SaveQuanity()}>Edit</span> | <span className="hover">Remove</span></p>           
 		return (
 			<div className="admin-item-main-container">
-			<Link className = "Links"to={`/adminItemForm/${this.props.productId}`}>			
+			<Link className = "Links"to={`/admin/${this.props.productId}`}>			
 				{ItemName}
 				<div className="image-quanity-container">
 					<div className="cart-image" style={{backgroundImage: 'url(' + this.props.productImage + ')'}}/>

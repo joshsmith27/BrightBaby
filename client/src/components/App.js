@@ -41,8 +41,8 @@ class App extends Component {
 							<Route path='/details/:id' component={Details}></Route>
 							<Route path='/store' component={Store}></Route>
 							<Route path='/cart' component={Cart}></Route>
-							<Route path='/adminUser' component={Admin}></Route>
-							<Route path='/adminItemForm/:id' component={AdminItemForm}></Route>
+							<Route path='/admin/:id' component={AdminItemForm}></Route>
+							<Route path='/admin' component={Admin}></Route>
 							<Route path='/' component={Home}></Route>
 						</Switch>
 					</div>
