@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const massive = require('massive');
@@ -16,12 +15,10 @@ massive( process.env.CONNECTION_STRING )
 
 
 
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+ app.use(express.static(path.resolve(__dirname, '../client/build')));
 
-app.get('/api/hello', (req, res) => {
-    res.send({ express: 'Hello From Express' });
-  });
+app.post('/admin/api/products/postProducts/:id', productsEndpoints.postProduct);
 
-app.get('*', serverController.catchAll);
+
 const port = process.env.PORT || 5000
 app.listen( port , () => { console.log(`Server listening on port ${port}`); } );

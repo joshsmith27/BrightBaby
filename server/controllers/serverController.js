@@ -1,5 +1,6 @@
+const path = require('path');
 module.exports = {
     catchAll : (request, response) =>{
-        response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));        
+        response.sendFile(path.resolve(__dirname, '../../client/build', 'index.html'));        
     }
 }
