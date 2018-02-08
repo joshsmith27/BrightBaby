@@ -1,1 +1,1 @@
-select * from product where quantity >= $1
+select * from product where avaliablequantity >= $1

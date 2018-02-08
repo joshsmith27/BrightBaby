@@ -1,3 +1,3 @@
-Select TOP 1 *
-From  product
-order by productId desc
+Select * From  product
+order by productid desc
+limit 1

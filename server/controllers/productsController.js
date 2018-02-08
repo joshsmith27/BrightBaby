@@ -4,8 +4,9 @@ module.exports = {
 	getProducts: ( req, res, next ) => {
         const dbInstance = dbGetter(req);
         if (req.user){
-            dbInstance.get_products([0])
-			.then(products => { res.status(200).send(products); })
+            dbInstance.ProductStoreProcedures.get_products([0])
+			.then(products => { return products})
+			.then(products=>{db})
 			.catch( err => {
 				console.log(err);
 				res.status(500).send(err);
@@ -32,14 +33,17 @@ module.exports = {
 
     postProduct: ( req, res, next ) => {
 		console.log(req.body)
-        let {Name, Price, Description, MoreInformation, Quanity} = req.body;
+        let {Name, Price, Description, MoreInformation, Quanity, ProductImage} = req.body;
 		let data = [Name, Price, Description, MoreInformation, Quanity];
 		const dbInstance = dbGetter(req);
 		if(req.params.id < 1){
             dbInstance.ProductStoreProcedures.create_product(data)
-			.then(product => { dbInstance.ProductStoreProcedures.get_newest_product()})
-			.then(product => {db.productStoreProcedures.add_image([product.productId])})
-			.then(product => {db.productStoreProcedures.get_products([1])})
+			.then(product => { 
+				return dbInstance.ProductStoreProcedures.get_newest_product()})
+			.then(product => {
+				dbInstance.ProductStoreProcedures.add_image([product[0].productid, ProductImage])})
+			.then(product => {
+				return dbInstance.ProductStoreProcedures.get_products(['1'])})
 			.then(products => {res.json(products)})
 			.catch( err => {
 				console.log(err);
@@ -47,7 +51,7 @@ module.exports = {
 			});
 		}else{
             dbInstance.ProductStoreProcedures.update_product(data)
-			.then(product => { dbInstance.get_products([1])})
+			.then(product => { dbInstance.get_products(['1'])})
 			.then(products => {res.json(products)})
 			.catch( err => {
 				console.log(err);

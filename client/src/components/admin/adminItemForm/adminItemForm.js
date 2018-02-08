@@ -36,11 +36,12 @@ class AdminItemForm extends Component {
 
  updateProduct(){
 	 let product = {
-		 Title: this.state.title,
+		 Name: this.state.title,
 		 Price: this.state.price,
 		 Description: this.state.price,
 		 ProductImage: this.state.productImage,
-		 MoreInfromation: this.state.additionalInfo 
+		 MoreInformation: this.state.additionalInfo,
+		 Quanity: this.state.productQuanity
 	 }
 	 this.props.UpdateProduct(this.props.match.params.id, product)
  }
