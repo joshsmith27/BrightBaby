@@ -17,7 +17,8 @@ massive( process.env.CONNECTION_STRING ).then( (dbInstance) =>
 app.use( bodyParser.json() );
  app.use(express.static(path.resolve(__dirname, '../client/build')));
 
-app.post('/admin/api/products/postProducts/:id', productsEndpoints.postProduct);
+app.get('/admin/api/products/getproducts', productsEndpoints.getProducts);
+app.post('/admin/api/products/postproducts/:id', productsEndpoints.postProduct);
 
 
 const port = process.env.PORT || 5000

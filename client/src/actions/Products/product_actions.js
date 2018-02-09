@@ -20,7 +20,7 @@ export function Get_Products (){
 
 export function Post_Update_Products(id, updates){
 	debugger
-	const request = axios.post(`${baseUrl}/postProducts/${id}`, updates);	
+	const request = axios.post(`${baseUrl}/postproducts/${id}`, updates);	
 	return {
 		type: POST_PRODUCT,
 		payload: request,
