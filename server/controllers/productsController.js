@@ -6,28 +6,15 @@ module.exports = {
 		let data;
         if (!req.user){
             dbInstance.ProductStoreProcedures.get_products(['1'])
-			.then(products => { 
-				
-				data = products;
-				return products})
+			.then(products => { data = products; return products})
 			.then(products=>{
-				
 				const images = products.map((product)=>{
-
 					return dbInstance.ProductStoreProcedures.get_product_images(product.productid)
 				})	
-				
 				Promise.all(images)
 					.then((images)=>{
-						debugger
-						let imagesArr =  images[0];
-						for(var i = 0; data.length; i++){
-							for(var j = 0; imagesArr.length; j++){
-								if(data[i].productid === imagesArr[j].productid){
-									data[i].productImages = imagesArr[j]
-									break;								
-								}
-							}
+						for(var i = 0; i < data.length; i++){
+							data[i].productImages = images[i];
 						}
 					res.json(data)
 				})
