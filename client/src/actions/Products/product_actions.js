@@ -11,6 +11,7 @@ export function Get_Details (id){
 };
 
 export function Get_Products (){
+	debugger
 	const request = axios.get(`${baseUrl}/getproducts`);	
 	return {
 		type: GET_PRODUCTS,
@@ -19,7 +20,6 @@ export function Get_Products (){
 }
 
 export function Post_Update_Products(id, updates){
-	debugger
 	const request = axios.post(`${baseUrl}/postproducts/${id}`, updates);	
 	return {
 		type: POST_PRODUCT,

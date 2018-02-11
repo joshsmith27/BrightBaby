@@ -10,21 +10,23 @@ class Store extends Component {
 	}
 	render() {
 		let Items;
-		if(this.props.products && typeof this.props.products !== 'string' ){
-			Items = this.props.products.map((e)=>{
+		debugger
+		var propType = typeof this.props.products;
+		if(this.props.products.length > 0 && propType !== 'string' ){
+			Items = this.props.products[0].map((e)=>{
 				return <Item
-				key={e.mass}
+				key={e.productid}
 				productImage=''
 				title={e.name}
-				price={e.height}
-				productId = {e.mass}
+				price={e.price}
+				productId = {e.productid}
 			></Item>
 		});
 		
 		}else{
 			Items = <div>{this.props.products}</div>
 		}
-	
+		console.log(this.props.products)
 		return (
 			<div className ="store-main-container">
 			<p className="Yellow-Text store-header">STORE</p>

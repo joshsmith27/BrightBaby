@@ -1,39 +1,27 @@
 const {dbGetter} = require('../services/db')
-
+const {getProducts} = require('../services/products')
 module.exports = {
 	getProducts: ( req, res, next ) => {
-		const dbInstance = dbGetter(req);
-		let data;
         if (!req.user){
-            dbInstance.ProductStoreProcedures.get_products(['1'])
-			.then(products => { data = products; return products})
-			.then(products=>{
-				const images = products.map((product)=>{
-					return dbInstance.ProductStoreProcedures.get_product_images(product.productid)
-				})	
-				Promise.all(images)
-					.then((images)=>{
-						for(var i = 0; i < data.length; i++){
-							data[i].productImages = images[i];
-						}
-					res.json(data)
+			getProducts('1', req)
+				.then((data)=>{
+					res.json(data);
 				})
-			})
-	
-			.catch( err => {
-				console.log(err);
-				res.status(500).send(err);
-			});
+				.catch( err => {
+                    console.log(err);
+                   res.json(err);
+                });
         }else{
-            dbInstance.get_products([1])
-			.then(products => { res.status(200).send(products); })
-			.catch( err => {
-				console.log(err);
-				res.status(500).send(err);
-			});
+			getProducts('0', req)
+				.then((data)=>{
+					res.json(data);
+				})
+				.catch( err => {
+                    console.log(err);
+                   res.json(err);
+                });
         }
     },
-
     getDetails: ( req, res, next ) => {
         const dbInstance = dbGetter(req);
             dbInstance.get_detail([req.params.ProductsId])
@@ -45,8 +33,7 @@ module.exports = {
     },
 
     postProduct: ( req, res, next ) => {
-		console.log(req.body)
-        let {Name, Price, Description, MoreInformation, Quanity, ProductImage} = req.body;
+        let {Name, Price, Description, MoreInformation, Quanity, ProductImages} = req.body;
 		let data = [Name, Price, Description, MoreInformation, Quanity];
 		const dbInstance = dbGetter(req);
 		if(req.params.id < 1){
@@ -54,22 +41,54 @@ module.exports = {
 			.then(product => { 
 				return dbInstance.ProductStoreProcedures.get_newest_product()})
 			.then(product => {
-				dbInstance.ProductStoreProcedures.add_image([product[0].productid, ProductImage])})
+				ProductImages.map((image)=>{
+					dbInstance.ProductStoreProcedures.add_image([product[0].productid, image.imagepath])})
+				})
 			.then(product => {
-				return dbInstance.ProductStoreProcedures.get_products(['1'])})
-			.then(products => {res.json(products)})
+				return getProducts('0', req)
+				})
+			.then((data)=>{
+				res.json(data);
+			})
 			.catch( err => {
 				console.log(err);
 				res.status(500).send(err);
 			});
 		}else{
+			let {Name, Price, Description, MoreInformation, Quanity, ProductImages} = req.body;
+			let data = [req.params.id, Name, Price, Description, MoreInformation, Quanity];
             dbInstance.ProductStoreProcedures.update_product(data)
-			.then(product => { dbInstance.get_products(['1'])})
-			.then(products => {res.json(products)})
+			.then(product => { 
+				return dbInstance.ProductStoreProcedures.get_details(req.params.id)})
+			.then(product => {
+				/// TODO add logic to add additional images
+				ProductImages.map((image)=>{
+					dbInstance.ProductStoreProcedures.update_image([req.params.id, image.imageid, image.imagepath])})
+				})
+			.then(product => {
+				return getProducts('0', req)
+				})
+			.then((data)=>{
+				res.json(data);
+			})
 			.catch( err => {
 				console.log(err);
 				res.status(500).send(err);
 			});
 		}
-    },
+	},
+	deleteProduct:( req, res, next )=>{
+		const dbInstance = dbGetter(req);
+		dbInstance.delete_product(req,params.productid)
+		.then(product => {
+			return getProducts('0', req)
+			})
+		.then((data)=>{
+			res.json(data);
+		})
+		.catch( err => {
+			console.log(err);
+			res.status(500).send(err);
+		});
+	}
 }
