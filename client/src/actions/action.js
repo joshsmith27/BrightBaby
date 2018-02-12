@@ -7,5 +7,6 @@ export const GetProducts = Get_Products;
 export const GetUserInfo = Get_UserInfo;
 export const GetCart = Get_Cart;
 export const UpdateProduct = Post_Update_Products;
+export const RemoveProduct = Remove_From_Cart;
 
 /////////// Post Action  ////////////////

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link} from 'react-router-dom';
+import {AddToCart} from '../cart/add_to_cart_service'
 class Item extends Component {
 
   addToCart(id){
@@ -15,7 +16,7 @@ class Item extends Component {
             <p className="price">{this.props.price}</p>
           </div>
         </Link>
-        <button className="addToCartButton" onClick={() => this.addToCart(this.props.productId)}>Add To Cart</button>
+        <button className="addToCartButton" onClick={() => this.AddToCart(this.props.product, 1)}>Add To Cart</button>
       </div>
     );
   }

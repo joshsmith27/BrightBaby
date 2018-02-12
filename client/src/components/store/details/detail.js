@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import {GetDetails} from '../../../actions/action';
+import{AddToCart} from '../cart/add_to_cart_service';
 
 class Details extends Component {
 	constructor(props){
@@ -24,29 +25,36 @@ class Details extends Component {
 
 	render() {
 
-		return (
-			<div className="details-main-container">
-				<div className="detail-flex-container">
-					<div className = "detail-image" style={{backgroundImage: 'url(' + this.props.details.productImage + ')'}}></div>
-					<div className = "detail-details">
-						<p className="Yellow-Text name">{this.props.details.productName}</p>
-						<p className="purple-Text price">{this.props.details.price}</p>
-						<p className="normal-Text description">{this.props.details.description}</p>
-						<div className="button-quanity-container">
-							<button className="addToCartButton biggerButton" onClick={() => this.addToCart(this.props.productId)}>Add To Cart</button>
-							<div className="display-flex">
-								<p>Qty:</p>
-								<input onChange={this.changeInput} type="number" className="quanity-input" value={this.state.productQuanity}/>
+		if(this.props.details.details){
+			let {name, price, description, moreinformation, productid} = this.props.details.details
+			let image = this.props.details.images[0].imagepath
+			return (
+				<div className="details-main-container">
+					<div className="detail-flex-container">
+						<div className = "detail-image" style={{backgroundImage: 'url(' + image + ')'}}></div>
+						<div className = "detail-details">
+							<p className="Yellow-Text name">{name.toUpperCase()}</p>
+							<p className="purple-Text price">{`$${Number(price).toFixed(2)}`}</p>
+							<p className="normal-Text description">{description}</p>
+							<div className="button-quanity-container">
+								<button className="addToCartButton biggerButton" onClick={() => AddToCart(this.props.details.details, this.state.productQuanity)}>Add To Cart</button>
+								<div className="display-flex">
+									<p>Qty:</p>
+									<input onChange={this.changeInput} type="number" className="quanity-input" value={this.state.productQuanity}/>
+								</div>
 							</div>
 						</div>
 					</div>
+					<div className = "additional-details-container">
+						<p className="Yellow-Text more-information">MORE INFORMATION</p>
+						<p className ="Normal-Text">{moreinformation}</p>
+					</div>
 				</div>
-				<div className = "additional-details-container">
-					<p className="Yellow-Text more-information">MORE INFORMATION</p>
-					<p className ="Normal-Text">{this.props.details.additionalDetails}</p>
-				</div>
-			</div>
-		);
+			);
+		}else{
+			return (<div>loading...</div>)
+		}
+
 	}
 }
 function mapStateToProps({details}){

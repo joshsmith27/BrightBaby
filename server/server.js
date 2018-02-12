@@ -15,11 +15,12 @@ massive( process.env.CONNECTION_STRING ).then( (dbInstance) =>
   });
 
 app.use( bodyParser.json() );
- app.use(express.static(path.resolve(__dirname, '../client/build')));
+// app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.get('/api/products/getproducts', productsEndpoints.getProducts);
+app.get(`/api/products/getDetails/:id`, productsEndpoints.getDetails)
 app.post('/api/products/postproducts/:id', productsEndpoints.postProduct);
-
+app.delete(`/api/products/delete/:id`, productsEndpoints.deleteProduct)
 
 const port = process.env.PORT || 5000
 app.listen( port , () => { console.log(`Server listening on port ${port}`); } );

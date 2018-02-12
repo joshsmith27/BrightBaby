@@ -23,9 +23,17 @@ module.exports = {
         }
     },
     getDetails: ( req, res, next ) => {
+		let data ={};
         const dbInstance = dbGetter(req);
-            dbInstance.get_detail([req.params.ProductsId])
-			.then(details => { res.status(200).send(details)})
+            dbInstance.ProductStoreProcedures.get_details([req.params.id])
+			.then(details => { 
+				data.details = details[0]
+				return dbInstance.ProductStoreProcedures.get_product_images(req.params.id)
+			})
+			.then((images)=>{
+				data.images = images;
+				res.json(data);
+			})
 			.catch( err => {
 				console.log(err);
 				res.status(500).send(err);
@@ -61,10 +69,14 @@ module.exports = {
 			.then(product => { 
 				return dbInstance.ProductStoreProcedures.get_details(req.params.id)})
 			.then(product => {
-				/// TODO add logic to add additional images
-				ProductImages.map((image)=>{
-					dbInstance.ProductStoreProcedures.update_image([req.params.id, image.imageid, image.imagepath])})
+			ProductImages.map((image)=>{
+					if(image.id > 0){
+						dbInstance.ProductStoreProcedures.update_image([req.params.id, image.imageid, image.imagepath])
+					}else{
+						dbInstance.ProductStoreProcedures.add_image([product[0].productid, image.imagepath])
+					}
 				})
+			})
 			.then(product => {
 				return getProducts('0', req)
 				})
@@ -77,6 +89,7 @@ module.exports = {
 			});
 		}
 	},
+
 	deleteProduct:( req, res, next )=>{
 		const dbInstance = dbGetter(req);
 		dbInstance.delete_product(req,params.productid)

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import{UpdateCart, RemoveCart} from '../cart/add_to_cart_service';
 
 class CartItem extends Component {
 	constructor(props){
@@ -27,6 +28,7 @@ class CartItem extends Component {
 			});  
 			this.refs.quanity.style.display = '';
 			this.refs.quanityInput.style.display = 'none';
+			UpdateCart(this.props.productId, this.state.productQuanity)
 		}
 	}
 	changeInput(e){
@@ -47,7 +49,7 @@ class CartItem extends Component {
 							<input style={style} onChange={this.changeInput} type="number" className="quanity-input" ref="quanityInput" value={this.state.productQuanity}/>
 						</div>
 
-						<p ><span className="Purple-Text hover" onClick={()=>this.SaveQuanity()}>{this.state.EditSaveText} </span> | <span className="hover">Remove</span></p>             
+						<p ><span className="Purple-Text hover" onClick={()=>this.SaveQuanity()}>{this.state.EditSaveText} </span> | <span className="hover" onClick={()=>{this.props.RemoveCartItem(this.props.productId, this.state.productQuanity)}}>Remove</span></p>             
 					</div>           
 				</div>
 			</div>

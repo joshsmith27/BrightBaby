@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CartItem from './cart_item.js';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import {GetCart} from '../../../actions/action';
+import {GetCart, RemoveCartItem} from '../../../actions/action';
 
 class Cart extends Component {
 
@@ -15,9 +15,11 @@ class Cart extends Component {
 		if(this.props.cart && typeof this.props.cart !== 'string' ){
 			CartItems = this.props.cart.map((e)=>{
 				return <CartItem
-        productName={e.productName}
-        productImage={e.productImage}
-        productQuanity={e.productQuanity}
+        productName={e.name}
+        productImage={e.productImages.length > 0 ?e .productImages[0].imagepath : ""}
+        productQuanity={e.quantity}
+        productId = {e.productId}
+        RemoveCartItem = {this.props.RemoveCartItem}
         />
 		});
 		
@@ -40,7 +42,7 @@ function mapStateToProps({cart}){
 	return {cart};
 }
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({GetCart}, dispatch);
+	return bindActionCreators({GetCart, RemoveCartItem}, dispatch);
 }
   
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

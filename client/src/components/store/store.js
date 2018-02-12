@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import {GetProducts} from '../../actions/action';
+
 import Item from './item/item';
 class Store extends Component {
 
@@ -9,17 +10,19 @@ class Store extends Component {
 		this.props.GetProducts();
 	}
 	render() {
-		let Items;
-		debugger
+		let Items = <div>Loading...</div>;
+		
 		var propType = typeof this.props.products;
 		if(this.props.products.length > 0 && propType !== 'string' ){
 			Items = this.props.products[0].map((e)=>{
+				console.log(e)
 				return <Item
 				key={e.productid}
-				productImage=''
+				productImage={e.productImages.length > 0 ?e .productImages[0].imagepath : ""}
 				title={e.name}
 				price={e.price}
 				productId = {e.productid}
+				product={e}
 			></Item>
 		});
 		

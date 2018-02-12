@@ -238,7 +238,8 @@ button:hover {
     height: 250px;
     width: 50%;
     background-position: center;
-    background-repeat: no-repeat; }
+    background-repeat: no-repeat;
+    background-size: contain; }
   .details-main-container .name {
     font-size: 25px; }
   .details-main-container .biggerButton {
