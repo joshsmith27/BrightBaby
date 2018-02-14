@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Logo from './brightbaby.svg';
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import { connect } from 'react-redux';
 import ScrollToTop from './ScrollToTop';
 import Home from './home/home';
 import Store from './store/store';
@@ -28,7 +29,7 @@ class App extends Component {
 						<div className='cart-container'>
 							<Link to={'/cart'}>
 								<div className='Normal-Text cart-text'>CART
-									<div className='cart-quanity'>0</div>
+									<div className='cart-quanity'>{this.props.cart.products.length}</div>
 								</div>
 							</Link> 
 						</div>
@@ -53,4 +54,8 @@ class App extends Component {
 	}
 }
 
-export default App;
+function mapStateToProps({cart}){
+	return {cart};
+}
+export default connect(mapStateToProps)(App);
+

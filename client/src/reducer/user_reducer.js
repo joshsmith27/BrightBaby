@@ -12,12 +12,10 @@ export function userInfo (state = {}, action){
 	}
 }
 
-export function cart (state = [], action){
+export function cart (state = {products:[], subTotal: 0}, action){
 	switch(action.type){
-		case `${GET_USER_CART}_FULFILLED` :
-			return action.payload.data;
-		case `${GET_USER_CART}_REJECTED`:
-			return action.payload.message;
+		case GET_USER_CART :
+			return action.payload;
 	    default:
 		    return state;
 	}

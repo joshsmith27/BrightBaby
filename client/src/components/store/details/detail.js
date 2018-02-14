@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import {GetDetails} from '../../../actions/action';
-import{AddToCart} from '../cart/add_to_cart_service';
+import {GetDetails, AddToCart} from '../../../actions/action';
+
 
 class Details extends Component {
 	constructor(props){
@@ -12,10 +12,17 @@ class Details extends Component {
 		};
 		this.changeInput = this.changeInput.bind(this);
 	}
+	
 	changeInput(e){
-		this.setState({
-			productQuanity: e.target.value
-		});
+		if(e.target.value > this.props.details.details.avaliablequantity){
+			this.setState({
+				productQuanity: this.props.details.details.avaliablequantity
+			});
+		}else{
+			this.setState({
+				productQuanity: e.target.value
+			});
+		}
 	}
 	
 	componentWillMount(){
@@ -24,10 +31,9 @@ class Details extends Component {
 	}
 
 	render() {
-
 		if(this.props.details.details){
-			let {name, price, description, moreinformation, productid} = this.props.details.details
-			let image = this.props.details.images[0].imagepath
+			let {name, price, description, moreinformation, productid, avaliableQuanity} = this.props.details.details
+			let image = this.props.details.details.productImages[0].imagepath
 			return (
 				<div className="details-main-container">
 					<div className="detail-flex-container">
@@ -37,10 +43,10 @@ class Details extends Component {
 							<p className="purple-Text price">{`$${Number(price).toFixed(2)}`}</p>
 							<p className="normal-Text description">{description}</p>
 							<div className="button-quanity-container">
-								<button className="addToCartButton biggerButton" onClick={() => AddToCart(this.props.details.details, this.state.productQuanity)}>Add To Cart</button>
+								<button className="addToCartButton biggerButton" onClick={() => this.props.AddToCart(this.props.details.details, this.state.productQuanity)}>Add To Cart</button>
 								<div className="display-flex">
 									<p>Qty:</p>
-									<input onChange={this.changeInput} type="number" className="quanity-input" value={this.state.productQuanity}/>
+									<input onChange={this.changeInput} type="number" min="1" className="quanity-input" value={this.state.productQuanity}/>
 								</div>
 							</div>
 						</div>
@@ -61,7 +67,7 @@ function mapStateToProps({details}){
 	return {details};
 }
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({GetDetails}, dispatch);
+	return bindActionCreators({GetDetails, AddToCart}, dispatch);
 }
   
 export default connect(mapStateToProps, mapDispatchToProps)(Details);

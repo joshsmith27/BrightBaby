@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CartItem from './cart_item.js';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import {GetCart, RemoveCartItem} from '../../../actions/action';
+import {GetCart, RemoveCartItem, UpdateCartItem} from '../../../actions/action';
 
 class Cart extends Component {
 
@@ -12,14 +12,18 @@ class Cart extends Component {
 
   render() {
     let CartItems;
-		if(this.props.cart && typeof this.props.cart !== 'string' ){
-			CartItems = this.props.cart.map((e)=>{
+		if(this.props.cart.products && typeof this.props.cart.products !== 'string' ){
+      console.log(this.props)
+			CartItems = this.props.cart.products.map((e, i)=>{
 				return <CartItem
+        key={e.productid}
         productName={e.name}
         productImage={e.productImages.length > 0 ?e .productImages[0].imagepath : ""}
-        productQuanity={e.quantity}
-        productId = {e.productId}
+        productQuanity={e.quanity}
+        productId = {e.productid}
         RemoveCartItem = {this.props.RemoveCartItem}
+        UpdateCartItem = {this.props.UpdateCartItem}
+        avaliablequantity={e.avaliablequantity}
         />
 		});
 		
@@ -31,7 +35,9 @@ class Cart extends Component {
         <p className="Yellow-Text cart-header">CART</p>
         {CartItems}
         <footer>
-            <p className="Normal-Text">Total: {this.props.subTotal}</p>
+          <div>
+            <p className="Normal-Text">Total: {this.props.cart.subTotal}</p>
+          </div>
         </footer>
       </div>
     );
@@ -42,7 +48,7 @@ function mapStateToProps({cart}){
 	return {cart};
 }
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({GetCart, RemoveCartItem}, dispatch);
+	return bindActionCreators({GetCart, RemoveCartItem, UpdateCartItem}, dispatch);
 }
   
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

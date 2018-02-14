@@ -13,7 +13,7 @@ class CartItem extends Component {
 		this.changeInput = this.changeInput.bind(this);
 	}
 
-	SaveQuanity(){     
+	SaveQuanity(){   
 		if(!this.state.EditSaveBool){
 			this.setState({
 				EditSaveText: 'Save',
@@ -28,13 +28,19 @@ class CartItem extends Component {
 			});  
 			this.refs.quanity.style.display = '';
 			this.refs.quanityInput.style.display = 'none';
-			UpdateCart(this.props.productId, this.state.productQuanity)
+			this.props.UpdateCartItem(this.props.productId, this.state.productQuanity)
 		}
 	}
 	changeInput(e){
-		this.setState({
-			productQuanity: e.target.value
-		});
+			if(e.target.value > Number(this.props.avaliablequantity)){
+				this.setState({
+					productQuanity: this.props.avaliablequantity
+				});
+			}else{
+					this.setState({
+						productQuanity: e.target.value
+					});
+				}
 	}
 	render() {
 		const style ={'display':'none'};
@@ -46,7 +52,7 @@ class CartItem extends Component {
 					<div className = "quanityText">
 						<div className="display-flex">
 							<p>Qty: <span ref="quanity">{this.state.productQuanity}</span></p>
-							<input style={style} onChange={this.changeInput} type="number" className="quanity-input" ref="quanityInput" value={this.state.productQuanity}/>
+							<input style={style} onChange={this.changeInput} min="1" type="number" className="quanity-input" ref="quanityInput" value={this.state.productQuanity}/>
 						</div>
 
 						<p ><span className="Purple-Text hover" onClick={()=>this.SaveQuanity()}>{this.state.EditSaveText} </span> | <span className="hover" onClick={()=>{this.props.RemoveCartItem(this.props.productId, this.state.productQuanity)}}>Remove</span></p>             

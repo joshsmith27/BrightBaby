@@ -31,7 +31,7 @@ module.exports = {
 				return dbInstance.ProductStoreProcedures.get_product_images(req.params.id)
 			})
 			.then((images)=>{
-				data.images = images;
+				data.details.productImages = images;
 				res.json(data);
 			})
 			.catch( err => {

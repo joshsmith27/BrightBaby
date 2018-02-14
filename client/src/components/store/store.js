@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import {GetProducts} from '../../actions/action';
+import {GetProducts, AddToCart} from '../../actions/action';
 
 import Item from './item/item';
 class Store extends Component {
@@ -23,6 +23,7 @@ class Store extends Component {
 				price={e.price}
 				productId = {e.productid}
 				product={e}
+				AddToCart={this.props.AddToCart}
 			></Item>
 		});
 		
@@ -45,7 +46,7 @@ function mapStateToProps({products}){
 	return {products};
 }
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({GetProducts}, dispatch);
+	return bindActionCreators({GetProducts, AddToCart}, dispatch);
 }
   
 export default connect(mapStateToProps, mapDispatchToProps)(Store);

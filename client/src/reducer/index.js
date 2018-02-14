@@ -1,4 +1,3 @@
-
 import { combineReducers } from 'redux';
 import {details, products} from './product_reducer';
 import {userInfo, cart} from './user_reducer';
