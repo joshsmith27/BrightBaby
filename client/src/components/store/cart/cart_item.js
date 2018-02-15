@@ -50,6 +50,7 @@ class CartItem extends Component {
 				<div className="image-quanity-container">
 					<div className="cart-image" style={{backgroundImage: 'url(' + this.props.productImage + ')'}}/>
 					<div className = "quanityText">
+						<p className="Text-Normal">Cost <span className="Purple-Text">{`$${Number(this.props.productPrice).toFixed(2)}`}</span></p>
 						<div className="display-flex">
 							<p>Qty: <span ref="quanity">{this.state.productQuanity}</span></p>
 							<input style={style} onChange={this.changeInput} min="1" type="number" className="quanity-input" ref="quanityInput" value={this.state.productQuanity}/>

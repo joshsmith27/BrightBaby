@@ -8,16 +8,19 @@
     }
     .detail-details {
         width: 45%;
+        min-width: 250px;
     }
     
     .detail-flex-container {
         display: flex;
-        justify-content: space-between
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
     
     .detail-image {
         height:  250px;
         width: 50%;
+        min-width: 230px;
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;

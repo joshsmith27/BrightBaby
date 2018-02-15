@@ -43,7 +43,7 @@ module.exports = {
     GetTotal: ()=>{
         let currentCartItems = JSON.parse(localStorage.getItem('cart')) || [];
         return currentCartItems.reduce((a, b) => {
-            return a + Number(b.price);
+            return a + (Number(b.price)* b.quanity);
           }, 0);
     }
 }

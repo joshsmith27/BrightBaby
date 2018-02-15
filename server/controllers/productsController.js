@@ -69,7 +69,7 @@ module.exports = {
 			.then(product => { 
 				return dbInstance.ProductStoreProcedures.get_details(req.params.id)})
 			.then(product => {
-			ProductImages.map((image)=>{
+				product.ProductImages.map((image)=>{
 					if(image.id > 0){
 						dbInstance.ProductStoreProcedures.update_image([req.params.id, image.imageid, image.imagepath])
 					}else{

@@ -20,6 +20,7 @@ class Cart extends Component {
         productName={e.name}
         productImage={e.productImages.length > 0 ?e .productImages[0].imagepath : ""}
         productQuanity={e.quanity}
+        productPrice={e.price}
         productId = {e.productid}
         RemoveCartItem = {this.props.RemoveCartItem}
         UpdateCartItem = {this.props.UpdateCartItem}
@@ -36,7 +37,7 @@ class Cart extends Component {
         {CartItems}
         <footer>
           <div>
-            <p className="Normal-Text">Total: {this.props.cart.subTotal}</p>
+            <p className="Normal-Text">Total: <span className="Purple-Text">{`$${Number(this.props.cart.subTotal).toFixed(2)}`}</span> </p>
           </div>
         </footer>
       </div>

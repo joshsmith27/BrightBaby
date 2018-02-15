@@ -45,7 +45,6 @@ export function Add_To_Cart(productId, quanity){
 }
 
 export function Get_Cart (){
-	debugger
 	let payload = {};
 	payload.products = JSON.parse(localStorage.getItem('cart')) || [];
 	payload.subTotal = GetTotal(payload.products);

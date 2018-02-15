@@ -9,14 +9,13 @@ import DefaultImage from '../../../addImage2.png';
 class AdminItemForm extends Component {
 	constructor(props){
 		super(props);
-		let {currentQuanity, title, price, description, additionalInfo, ProductImage} = this.props.details
 		this.state = {
-			productQuanity: currentQuanity ? currentQuanity : 0,
-			title: title ? title : '',
-			price: price ? price : '',
-			description: description ? description : '',
-			additionalInfo: additionalInfo ? additionalInfo : '', 
-			productImage: ProductImage ? ProductImage : DefaultImage
+			productQuanity:  0,
+			title:  '',
+			price: '',
+			description: '',
+			additionalInfo:  '', 
+			productImage:  DefaultImage
 		};
 		this.changeInput = this.changeInput.bind(this);
 		this.saveImage = this.saveImage.bind(this);
@@ -48,14 +47,27 @@ class AdminItemForm extends Component {
 
 	componentWillMount(){
 		const id = this.props.match.params.id;
-		this.props.GetDetails(id);
+		this.props.GetDetails(id)
+		.then((response)=>{
+			let {avaliablequantity, name, price, description, moreinformation, productImage} = response.value.data.details.details
+
+			this.setState({
+				productQuanity:  avaliablequantity,
+				title:  name,
+				price: price,
+				description: description,
+				additionalInfo:  moreinformation, 
+				productImage:  productImage[0].imagepath
+			})
+			
+		});
 	}
 
 	render() {
 		return (
 			<div className="details-main-container">
 				<div className="detail-flex-container image-price-container">
-				<FilePicker defaultImage={this.state.productImage} saveImage={this.saveImage}/>
+				<FilePicker defaultImage={this.state.productImage[0].imagepath} saveImage={this.saveImage}/>
 					
 					<div className = "detail-details">
 						<input placeholder="Title..." name="title" onChange={this.changeInput} className="input Yellow-Text name" value={this.state.title} />
