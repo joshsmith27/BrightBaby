@@ -39,9 +39,10 @@ class FilePicker extends Component {
 
 
     render() {
+      console.log(this.props.defaultImage[0])
       return (
         <div>
-          <div className = "adminForm-image" style={{backgroundImage: `url('${this.state.image}')`}}>
+          <div className = "adminForm-image" style={{backgroundImage: `url('${this.state.image[0].imagepath}')`}}>
 					</div>
           <form
             onSubmit={this.handleSubmit}>

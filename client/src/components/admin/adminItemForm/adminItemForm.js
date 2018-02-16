@@ -10,13 +10,13 @@ class AdminItemForm extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			productQuanity:  0,
-			title:  '',
-			price: '',
-			description: '',
-			additionalInfo:  '', 
-			productImage:  DefaultImage
-		};
+			avaliablequantity: this.props.details.details.avaliablequantity,
+			name: this.props.details.details.name ,
+			price: this.props.details.details.price,
+			description: this.props.details.details.descriptionion,
+			moreinformation: this.props.details.details.moreinformation,
+			productImages: this.props.details.details.productImages,
+		}
 		this.changeInput = this.changeInput.bind(this);
 		this.saveImage = this.saveImage.bind(this);
 		this.updateProduct =this.updateProduct.bind(this);
@@ -34,13 +34,14 @@ class AdminItemForm extends Component {
 	}
 
  updateProduct(){
+	 debugger
 	 let product = {
-		 Name: this.state.title,
+		 Name: this.state.name,
 		 Price: this.state.price,
-		 Description: this.state.price,
-		 ProductImage: this.state.productImage,
-		 MoreInformation: this.state.additionalInfo,
-		 Quanity: this.state.productQuanity
+		 Description: this.state.description,
+		 ProductImages: this.state.productImage ? this.state.productImage : [],
+		 MoreInformation: this.state.moreinformation,
+		 Quanity: this.state.avaliablequantity
 	 }
 	 this.props.UpdateProduct(this.props.match.params.id, product)
  }
@@ -48,29 +49,23 @@ class AdminItemForm extends Component {
 	componentWillMount(){
 		const id = this.props.match.params.id;
 		this.props.GetDetails(id)
-		.then((response)=>{
-			let {avaliablequantity, name, price, description, moreinformation, productImage} = response.value.data.details.details
-
-			this.setState({
-				productQuanity:  avaliablequantity,
-				title:  name,
-				price: price,
-				description: description,
-				additionalInfo:  moreinformation, 
-				productImage:  productImage[0].imagepath
-			})
-			
-		});
+		.then((response=>{
+			debugger
+			this.setState(response.value.data.details)
+		}))
 	}
+	
 
 	render() {
+		let FilePicker = this
+		console.log(this.state.ProductImage)
 		return (
 			<div className="details-main-container">
 				<div className="detail-flex-container image-price-container">
-				<FilePicker defaultImage={this.state.productImage[0].imagepath} saveImage={this.saveImage}/>
+				
 					
 					<div className = "detail-details">
-						<input placeholder="Title..." name="title" onChange={this.changeInput} className="input Yellow-Text name" value={this.state.title} />
+						<input placeholder="Title..." name="name" onChange={this.changeInput} className="input Yellow-Text name" value={this.state.name} />
 						<br/>
 						<input type="number"  placeholder="Price..." name="price" onChange={this.changeInput} className="input Purple-Text price" value={this.state.price}/>
 						<textarea placeholder="Description..." name="description" onChange={this.changeInput} className="textarea Normal-Text description" value={this.state.description}/>
@@ -78,12 +73,12 @@ class AdminItemForm extends Component {
 				</div>
 				<div className = "additional-details-container">
 					<p className="Yellow-Text more-information">MORE INFORMATION</p>
-					<textarea placeholder="More Information..." name="additionalInfo" onChange={this.changeInput} className="textarea Normal-Text description" value={this.state.additionalInfo}/>
+					<textarea placeholder="More Information..." name="moreinformation" onChange={this.changeInput} className="textarea Normal-Text description" value={this.state.moreinformation}/>
 				</div>
 				<div className="saveQuanity-container">
 					<div className="display-flex">
 						<p>Current Quanity:</p>
-						<input type="number" className="quanity-input" name="productQuanity" onChange={this.changeInput}  value={this.state.productQuanity}/>
+						<input type="number" className="quanity-input" name="avaliablequantity" onChange={this.changeInput}  value={this.state.avaliablequantity}/>
 					</div>
 					<button className="addToCartButton biggerButton" onClick={this.updateProduct}>Save</button>
 				</div>

@@ -15,7 +15,6 @@ class Store extends Component {
 		var propType = typeof this.props.products;
 		if(this.props.products.length > 0 && propType !== 'string' ){
 			Items = this.props.products[0].map((e)=>{
-				console.log(e)
 				return <Item
 				key={e.productid}
 				productImage={e.productImages.length > 0 ?e .productImages[0].imagepath : ""}
@@ -30,7 +29,6 @@ class Store extends Component {
 		}else{
 			Items = <div>{this.props.products}</div>
 		}
-		console.log(this.props.products)
 		return (
 			<div className ="store-main-container">
 			<p className="Yellow-Text store-header">STORE</p>

@@ -1,7 +1,27 @@
 import {GET_DETAILS, GET_PRODUCTS, GET_USERINFO} from './../actions/constants';
 
-export function details (state = {}, action){
+export function details (state = {
+		details:{
+		avaliablequantity: 0,
+		name: "",
+		price: "",
+		description: "",
+		moreinformation: "",
+		productImages: [{imagepath: ""}],
+	}
+}, action){
 	switch(action.type){
+		case `${GET_DETAILS}_PENDING` :
+			return{
+				details:{
+					avaliablequantity: 0,
+					name: "",
+					price: "",
+					description: "",
+					moreinformation: "",
+					ProductImage: "",
+				}
+			};
 	    case `${GET_DETAILS}_FULFILLED` :
 			return action.payload.data;
 		case `${GET_DETAILS}_REJECTED`:

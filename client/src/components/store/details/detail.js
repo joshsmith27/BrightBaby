@@ -31,7 +31,7 @@ class Details extends Component {
 	}
 
 	render() {
-		if(this.props.details.details){
+		if(this.props.details.details.name){
 			let {name, price, description, moreinformation, productid, avaliableQuanity} = this.props.details.details
 			let image = this.props.details.details.productImages[0].imagepath
 			return (

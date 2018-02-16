@@ -65,18 +65,27 @@ module.exports = {
 		}else{
 			let {Name, Price, Description, MoreInformation, Quanity, ProductImages} = req.body;
 			let data = [req.params.id, Name, Price, Description, MoreInformation, Quanity];
+			let productInfo ={}
             dbInstance.ProductStoreProcedures.update_product(data)
 			.then(product => { 
-				return dbInstance.ProductStoreProcedures.get_details(req.params.id)})
-			.then(product => {
-				product.ProductImages.map((image)=>{
-					if(image.id > 0){
-						dbInstance.ProductStoreProcedures.update_image([req.params.id, image.imageid, image.imagepath])
+				return dbInstance.ProductStoreProcedures.get_details(req.params.id)})	
+			.then(product => { 
+				productInfo.productid = product[0].productid
+				return dbInstance.ProductStoreProcedures.get_product_images(req.params.id)
+			})
+			.then((images)=>{
+				let imageIds = ProductImages.map((image)=>{
+					return image.imageid
+				})
+				images.map((image)=>{
+					if(imageIds.includes(image.imageid)){
+						dbInstance.ProductStoreProcedures.update_image([image.productid, image.imageid, image.imagepath])
 					}else{
-						dbInstance.ProductStoreProcedures.add_image([product[0].productid, image.imagepath])
+						dbInstance.ProductStoreProcedures.add_image([productInfo.productid, image.imagepath])
 					}
 				})
 			})
+			
 			.then(product => {
 				return getProducts('0', req)
 				})
