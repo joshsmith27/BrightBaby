@@ -47,7 +47,7 @@ class Admin extends Component {
         />
     )
 		}else{
-			NewItemForms = [<div>{this.props.products}</div>]
+			NewItemForms = [<div key={0}>{this.props.products}</div>]
       NewItemForms.push(
           <NewItemForm
             key={"Add New Item"}

@@ -18,15 +18,15 @@ class FilePicker extends Component {
           var reader = new FileReader();
           reader.readAsDataURL(file);
           reader.onload = function () {
-            HelloWorld(reader.result)
+            HelloWorld(reader.result, file)
           };
           reader.onerror = function (error) {
             console.log('Error: ', error);
           };
         }
      }    
-     function HelloWorld(info){
-       this.props.saveImage(info);
+     function HelloWorld(info, file){
+       this.props.saveImage(file);
       this.setState({
         image:info,
       });

@@ -5,7 +5,7 @@ const cors = require('cors');
 const massive = require('massive');
 const multer  = require('multer')
 const upload = multer({ dest: 'client/src/uploads/' })
-require('dotenv').config();
+require('dotenv').config()
 const productsEndpoints = require('./controllers/productsController.js')
 const serverController = require('./controllers/serverController.js')
 
