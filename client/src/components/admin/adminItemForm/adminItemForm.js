@@ -57,13 +57,14 @@ class AdminItemForm extends Component {
 	
 
 	render() {
-		let FilePicker = this
-		console.log(this.state.ProductImage)
+		debugger
+		//  let FilePicker = this.state.productImages[0].imagepath === "" ? <div> Loading...</div> : 
+		
 		return (
 			<div className="details-main-container">
 				<div className="detail-flex-container image-price-container">
 				
-					
+				<FilePicker defaultImage={this.state.productImages[0].imagepath} saveImage={this.saveImage}/>
 					<div className = "detail-details">
 						<input placeholder="Title..." name="name" onChange={this.changeInput} className="input Yellow-Text name" value={this.state.name} />
 						<br/>

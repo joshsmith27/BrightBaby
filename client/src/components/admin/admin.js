@@ -39,6 +39,7 @@ class Admin extends Component {
 		});
 		NewItemForms.push(
       <NewItemForm
+      key={0}
         productName="Add A New Item"
         productImage= {DefaultImage}
         productQuanity= "0"
@@ -49,6 +50,7 @@ class Admin extends Component {
 			NewItemForms = [<div>{this.props.products}</div>]
       NewItemForms.push(
           <NewItemForm
+            key={"Add New Item"}
             productName="Add New Item"
             productImage= {DefaultImage}
             productQuanity= "0"

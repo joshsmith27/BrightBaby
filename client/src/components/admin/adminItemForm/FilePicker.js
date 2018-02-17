@@ -42,7 +42,7 @@ class FilePicker extends Component {
       console.log(this.props.defaultImage[0])
       return (
         <div>
-          <div className = "adminForm-image" style={{backgroundImage: `url('${this.state.image[0].imagepath}')`}}>
+          <div className = "adminForm-image" style={{backgroundImage: `url('${this.state.image}')`}}>
 					</div>
           <form
             onSubmit={this.handleSubmit}>
@@ -62,6 +62,8 @@ class FilePicker extends Component {
               {this.state.formButtonText}
             </button>
           </form>
+
+         
         </div>
        
       );
