@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-
+import brightBabylogo from './../../brightbaby.svg'
 class FilePicker extends Component {
     constructor(props) {
       super(props);
       this.state = {
+        images:[brightBabylogo, brightBabylogo,brightBabylogo],
         image: this.props.defaultImage,
         formButtonText: 'VIEW',
       }
@@ -11,6 +12,7 @@ class FilePicker extends Component {
     }
 
     handleSubmit(event) {
+      debugger
       event.preventDefault();
       
       function getBase64(file) {
@@ -25,11 +27,11 @@ class FilePicker extends Component {
           };
         }
      }    
-     function HelloWorld(info, file){
-       this.props.saveImage(file);
+    function HelloWorld(info, file){
+      this.props.saveImage(file);
       this.setState({
         image:info,
-      });
+    });
       
     }
 
@@ -39,11 +41,18 @@ class FilePicker extends Component {
 
 
     render() {
-      console.log(this.props.defaultImage[0])
+      let images = this.state.images.map((image)=>{
+        <div className = "small-image" style={{backgroundImage: `url('${image}')`}}/>
+      })
       return (
         <div>
-          <div className = "adminForm-image" style={{backgroundImage: `url('${this.state.image}')`}}>
-					</div>
+          <div className="display-flex">
+            <div>
+              {images}
+            </div>
+            <div className = "adminForm-image" style={{backgroundImage: `url('${this.state.image}')`}}/>
+          </div>
+
           <form
             onSubmit={this.handleSubmit}>
             <label>

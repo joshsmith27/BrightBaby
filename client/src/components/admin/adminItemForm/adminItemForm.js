@@ -27,14 +27,15 @@ class AdminItemForm extends Component {
 		});
 	}
 
-	saveImage(base64){
+	saveImage(file){
+		let formFile = new FormData();
+		formFile.set('image1', file, 'image1.jpg');
 		this.setState({
-			productImage:base64
+			productImages:[...this.state.productImages, formFile]
 		})
 	}
 
  updateProduct(){
-	 debugger
 	 let product = {
 		 Name: this.state.name,
 		 Price: this.state.price,
@@ -57,7 +58,6 @@ class AdminItemForm extends Component {
 	
 
 	render() {
-		debugger
 		//  let FilePicker = this.state.productImages[0].imagepath === "" ? <div> Loading...</div> : 
 		
 		return (
