@@ -12,7 +12,6 @@ class FilePicker extends Component {
     }
 
     handleSubmit(event) {
-      debugger
       event.preventDefault();
       
       function getBase64(file) {
@@ -41,13 +40,14 @@ class FilePicker extends Component {
 
 
     render() {
+      debugger
       let images = this.state.images.map((image)=>{
-        <div className = "small-image" style={{backgroundImage: `url('${image}')`}}/>
+        return <div className = "small-image" style={{backgroundImage: `url('${image}')`}}/>
       })
       return (
         <div>
           <div className="display-flex">
-            <div>
+            <div clasName = "adminSmallForm">
               {images}
             </div>
             <div className = "adminForm-image" style={{backgroundImage: `url('${this.state.image}')`}}/>

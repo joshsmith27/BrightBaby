@@ -35,3 +35,13 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.small-image{
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(/static/media/brightbaby.3fd2c611.svg);
+    border: solid 1px;
+    border-radius: 4px;
+}

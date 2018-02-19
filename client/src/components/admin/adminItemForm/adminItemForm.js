@@ -51,7 +51,6 @@ class AdminItemForm extends Component {
 		const id = this.props.match.params.id;
 		this.props.GetDetails(id)
 		.then((response=>{
-			debugger
 			this.setState(response.value.data.details)
 		}))
 	}
