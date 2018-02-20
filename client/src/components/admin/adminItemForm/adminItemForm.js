@@ -40,7 +40,6 @@ class AdminItemForm extends Component {
 		 Name: this.state.name,
 		 Price: this.state.price,
 		 Description: this.state.description,
-		 ProductImages: this.state.productImage ? this.state.productImage : [],
 		 MoreInformation: this.state.moreinformation,
 		 Quanity: this.state.avaliablequantity
 	 }
@@ -62,8 +61,11 @@ class AdminItemForm extends Component {
 		return (
 			<div className="details-main-container">
 				<div className="detail-flex-container image-price-container">
+				{this.state.name !== "" ? 
+					<FilePicker/>: 
+					""
+				}
 				
-				<FilePicker defaultImage={this.state.productImages[0].imagepath} saveImage={this.saveImage}/>
 					<div className = "detail-details">
 						<input placeholder="Title..." name="name" onChange={this.changeInput} className="input Yellow-Text name" value={this.state.name} />
 						<br/>

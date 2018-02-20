@@ -13,19 +13,6 @@ class Admin extends Component {
 
   render() {
     let NewItemForms;
-
-// 		if(this.props.products[0] && typeof this.props.products !== 'string' ){
-// 			NewItemForms = this.props.products[0].map((e)=>{
-// debugger
-// 				return (
-//             <NewItemForm
-//             productName={e.productName}
-//             productImage={e.productImage}
-//             productQuanity={e.productQuanity}
-//             productId = {e.productId}
-//             />
-//       )
-//     });
     var propType = typeof this.props.products;
 		if(this.props.products.length > 0 && propType !== 'string' ){
 			NewItemForms = this.props.products[0].map((e)=>{

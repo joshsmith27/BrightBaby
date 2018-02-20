@@ -5,7 +5,7 @@ class FilePicker extends Component {
       super(props);
       this.state = {
         images:[brightBabylogo, brightBabylogo,brightBabylogo],
-        image: this.props.defaultImage,
+        image: brightBabylogo,
         formButtonText: 'VIEW',
       }
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,14 +40,13 @@ class FilePicker extends Component {
 
 
     render() {
-      debugger
       let images = this.state.images.map((image)=>{
         return <div className = "small-image" style={{backgroundImage: `url('${image}')`}}/>
       })
       return (
-        <div>
+        <div className="image-display-container">
           <div className="display-flex">
-            <div clasName = "adminSmallForm">
+            <div className = "adminSmallForm">
               {images}
             </div>
             <div className = "adminForm-image" style={{backgroundImage: `url('${this.state.image}')`}}/>
