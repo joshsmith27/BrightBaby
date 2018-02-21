@@ -62,7 +62,7 @@ class AdminItemForm extends Component {
 			<div className="details-main-container">
 				<div className="detail-flex-container image-price-container">
 				{this.state.name !== "" ? 
-					<FilePicker/>: 
+					<FilePicker productId={this.props.details.details.productid}/>: 
 					""
 				}
 				

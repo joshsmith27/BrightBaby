@@ -384,7 +384,7 @@ button:hover {
 
 .image-display-container .display-flex {
   width: 100% !important;
-  margin-left: -60px !important;
+  margin-left: -80px !important;
   margin-top: 4px !important; }
 
 .More-details-form-textarea {
@@ -403,9 +403,11 @@ button:hover {
   background-position: center; }
 
 .small-image {
-  height: 50px;
-  width: 50px;
-  background-size: contain;
+  height: 75px;
+  width: 75px;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(78%);
   background-repeat: no-repeat;
   background-image: url(/static/media/brightbaby.3fd2c611.svg);
   border: solid 1px;

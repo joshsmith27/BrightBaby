@@ -39,6 +39,17 @@ module.exports = {
 				res.status(500).send(err);
 			});
     },
+	getImages:(req, res, next)=>{
+		const dbInstance = dbGetter(req);
+		dbInstance.ProductStoreProcedures.get_product_images(req.params.id)
+			.then((images)=>{
+				res.json(images);
+			})
+			.catch((err)=>{
+				console.log(err);
+				res.status(500).send(err);
+			})
+	},
 
     postProduct: ( req, res, next ) => {
         let {Name, Price, Description, MoreInformation, Quanity, ProductImages} = req.body;

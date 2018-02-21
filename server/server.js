@@ -21,7 +21,9 @@ app.use( bodyParser.json() );
 // app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.get('/api/products/getproducts', productsEndpoints.getProducts);
-app.get(`/api/products/getDetails/:id`, productsEndpoints.getDetails)
+app.get(`/api/products/getDetails/:id`, productsEndpoints.getDetails);
+app.get(`/api/products/getImages/:id`, productsEndpoints.getImages);
+
 app.post('/api/products/postproducts/:id', upload.single('avatar'), productsEndpoints.postProduct);
 app.post('/api/product/add/images', upload.array('images', 2), ((req, res)=>{
   let data = req.files.map((file) =>{
