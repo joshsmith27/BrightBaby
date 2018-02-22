@@ -24,8 +24,9 @@ app.get('/api/products/getproducts', productsEndpoints.getProducts);
 app.get(`/api/products/getDetails/:id`, productsEndpoints.getDetails);
 app.get(`/api/products/getImages/:id`, productsEndpoints.getImages);
 
-app.post('/api/products/postproducts/:id', upload.single('avatar'), productsEndpoints.postProduct);
-app.post('/api/product/add/images', upload.array('images', 2), ((req, res)=>{
+app.post('/api/products/postproducts/:id', productsEndpoints.postProduct);
+app.post('/api/product/add/images', upload.array('photos', 3), ((req, res)=>{
+  debugger
   let data = req.files.map((file) =>{
     return file.filename
   })
