@@ -25,13 +25,7 @@ app.get(`/api/products/getDetails/:id`, productsEndpoints.getDetails);
 app.get(`/api/products/getImages/:id`, productsEndpoints.getImages);
 
 app.post('/api/products/postproducts/:id', productsEndpoints.postProduct);
-app.post('/api/product/add/images', upload.array('photos', 3), ((req, res)=>{
-  debugger
-  let data = req.files.map((file) =>{
-    return file.filename
-  })
-  res.send(data)
-}));
+app.post('/api/product/add/images', upload.array('photos', 3), productsEndpoints.uploadImages);
 app.delete(`/api/products/delete/:id`, productsEndpoints.deleteProduct)
 
 

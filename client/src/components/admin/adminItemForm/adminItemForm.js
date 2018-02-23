@@ -15,10 +15,10 @@ class AdminItemForm extends Component {
 			price: this.props.details.details.price,
 			description: this.props.details.details.descriptionion,
 			moreinformation: this.props.details.details.moreinformation,
-			productImages: this.props.details.details.productImages,
+			imagesToSave: [],
 		}
 		this.changeInput = this.changeInput.bind(this);
-		this.saveImage = this.saveImage.bind(this);
+		this.saveImageNames = this.saveImageNames.bind(this);
 		this.updateProduct =this.updateProduct.bind(this);
 	}
 	changeInput(e){
@@ -27,11 +27,9 @@ class AdminItemForm extends Component {
 		});
 	}
 
-	saveImage(file){
-		let formFile = new FormData();
-		formFile.set('image1', file, 'image1.jpg');
+	saveImageNames(files){
 		this.setState({
-			productImages:[...this.state.productImages, formFile]
+			imagesToSave:files
 		})
 	}
 
@@ -62,7 +60,7 @@ class AdminItemForm extends Component {
 			<div className="details-main-container">
 				<div className="detail-flex-container image-price-container">
 				{this.state.name !== "" ? 
-					<FilePicker productId={this.props.details.details.productid}/>: 
+					<FilePicker productId={this.props.details.details.productid} saveImageNames={this.saveImageNames}/>: 
 					""
 				}
 				

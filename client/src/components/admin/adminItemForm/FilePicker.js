@@ -13,7 +13,9 @@ class FilePicker extends Component {
         id: 0
       },
       formButtonText: 'VIEW',
-      saveImages: []
+      saveImages: [],
+      previousSavedRef: "image0",
+      imageHasBeenChanged:false,
     }
     this.handleSubmit = this
       .handleSubmit
@@ -27,6 +29,7 @@ class FilePicker extends Component {
   }
 
   componentDidMount() {
+    this.refs[this.state.previousSavedRef].style.border = "solid 1px rgb(255,187,0)";    
     axios
       .get(`/api/products/getImages/${this.props.productId}`)
       .then((response) => {
@@ -94,6 +97,7 @@ class FilePicker extends Component {
           id: index
         },
         images,
+        imageHasBeenChanged: true,
         saveImages: [
           ...this.state.saveImages,
           file
@@ -107,11 +111,16 @@ class FilePicker extends Component {
   }
 
   switchImage(image, i) {
+    if(this.state.previousSavedRef){
+      this.refs[this.state.previousSavedRef].style.border = "solid 1px grey";
+    }
+    this.refs[`image${i}`].style.border = "solid 1px rgb(255,187,0)";
     this.setState({
       image: {
         image: image,
         id: i
-      }
+      },
+      previousSavedRef:`image${i}`
     })
   }
 
@@ -125,7 +134,9 @@ class FilePicker extends Component {
         'Content-Type': 'multipart/form-data'
       }
     })
-    .then(())
+    .then((response)=>{
+      this.props.saveImageNames(response.data)
+    });
   }
   render() {
     let images = this
@@ -133,19 +144,19 @@ class FilePicker extends Component {
       .images
       .map((image, i) => {
         return <div
+          ref={`image${i}`}
           key={i}
           className="small-image"
           onClick={() => {
           this.switchImage(image, i)
         }}
           style={{
-          backgroundImage: `url('${image}')`
+          backgroundImage: `url('${image}')`,
         }}/>
       })
 
     return (
       <div className="image-display-container">
-        <button onClick={this.saveImages}>submit</button>
         <div className="display-flex">
           <div className="adminSmallForm">
             {images}
@@ -172,6 +183,7 @@ class FilePicker extends Component {
           <button type="submit">
             {this.state.formButtonText}
           </button>
+          <button className="sudmit-button" ref="sub" disabled onClick={this.saveImages}>SUBMIT</button>          
         </form>
 
       </div>
