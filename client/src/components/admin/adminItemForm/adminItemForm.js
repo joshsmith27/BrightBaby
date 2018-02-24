@@ -4,17 +4,18 @@ import { bindActionCreators} from 'redux';
 import {GetDetails, UpdateProduct} from '../../../actions/action';
 import FilePicker from './FilePicker';
 import DefaultImage from '../../../addImage2.png';
-
+import Loader from '../../loading';
 
 class AdminItemForm extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			avaliablequantity: this.props.details.details.avaliablequantity,
-			name: this.props.details.details.name ,
-			price: this.props.details.details.price,
-			description: this.props.details.details.descriptionion,
-			moreinformation: this.props.details.details.moreinformation,
+			isLoaded:false,
+			avaliablequantity: 0,
+			name: '',
+			price: '',
+			description: '',
+			moreinformation: '',
 			imagesToSave: [],
 		}
 		this.changeInput = this.changeInput.bind(this);
@@ -48,14 +49,14 @@ class AdminItemForm extends Component {
 		const id = this.props.match.params.id;
 		this.props.GetDetails(id)
 		.then((response=>{
+			response.value.data.details.isLoaded = true;
 			this.setState(response.value.data.details)
 		}))
 	}
 	
 
 	render() {
-		//  let FilePicker = this.state.productImages[0].imagepath === "" ? <div> Loading...</div> : 
-		
+	if(this.state.isLoaded)	{
 		return (
 			<div className="details-main-container">
 				<div className="detail-flex-container image-price-container">
@@ -84,6 +85,12 @@ class AdminItemForm extends Component {
 				</div>
 			</div>
 		);
+	}else{
+		return (
+			<Loader/>
+		);
+	}
+
 	}
 }
 function mapStateToProps({details}){
