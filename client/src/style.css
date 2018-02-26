@@ -35,7 +35,7 @@ textarea {
 
 button {
   border-radius: 4px;
-  background: #ffbb00;
+  background: #178E16;
   color: white;
   border: none;
   font-size: 10px; }
@@ -50,11 +50,11 @@ button[disabled] {
   color: #666666; }
 
 .Yellow-Text {
-  color: #ffbb00;
+  color: #178E16;
   font-weight: bold; }
 
 .Purple-Text {
-  color: #D6AFDD; }
+  color: #c19cc7; }
 
 .Normal-Text {
   color: #8c8c8c;
@@ -107,9 +107,9 @@ button[disabled] {
   text-decoration: none;
   color: #8c8c8c; }
 .App nav.nav-container {
-  width: 27%;
+  width: 40%;
   margin: 30px auto;
-  margin-top: -20px;
+  margin-top: -10px;
   text-align: center;
   display: -ms-flexbox;
   display: flex;
@@ -186,7 +186,7 @@ button[disabled] {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
   .store-main-container .store-header {
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
     margin: 115px;
     font-weight: bold; }
@@ -207,7 +207,7 @@ button[disabled] {
 
 .price {
   font-weight: lighter;
-  color: #D6AFDD; }
+  color: #c19cc7; }
 
 .item-detail-container {
   width: 100%;

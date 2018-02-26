@@ -49,7 +49,7 @@ class FilePicker extends Component {
           image: {
             image: response.data[0].imagepath,
             id: 0
-          }
+          },
         })
       })
   }
@@ -155,6 +155,11 @@ class FilePicker extends Component {
         }}/>
       })
 
+    let sudmitButton = this.state.imageHasBeenChanged ? 
+    <button className="sudmit-button" ref="sub" onClick={this.saveImages}>SUBMIT</button>          
+    :
+    <button className="sudmit-button" ref="sub" disabled onClick={this.saveImages}>SUBMIT</button>          
+    
     return (
       <div className="image-display-container">
         <div className="display-flex">
@@ -183,7 +188,7 @@ class FilePicker extends Component {
           <button type="submit">
             {this.state.formButtonText}
           </button>
-          <button className="sudmit-button" ref="sub" disabled onClick={this.saveImages}>SUBMIT</button>          
+          {sudmitButton}
         </form>
 
       </div>

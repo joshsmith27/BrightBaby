@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Logo from './brightbaby.svg';
+import Logo from './SpruceBaby.svg';
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import ScrollToTop from './ScrollToTop';
@@ -37,6 +37,7 @@ class App extends Component {
 						<nav className='nav-container'>
 							<Link  to={'/'}>Home</Link>
 							<Link  to={'/store'}>Store</Link>
+							<Link  to={'/store'}>Blog</Link>
 						</nav>
 						<Switch>
 							<Route path='/details/:id' component={Details}></Route>
