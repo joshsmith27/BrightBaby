@@ -43,7 +43,7 @@ textarea {
 
 button{
   border-radius: 4px;
-  background: $Yellow;
+  background: $AccentColor1;
   color: $White;
   border: none;
   font-size:10px;
@@ -53,12 +53,12 @@ button:hover{
 }
 button:disabled,
 button[disabled]{
-  border: 1px solid #999999;
+  border: none;
   background-color: #cccccc;
   color: #666666;
 }
 .Yellow-Text {
-  color: $Yellow;
+  color: $AccentColor1;
   font-weight: bold;
 }
 .Purple-Text {

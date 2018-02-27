@@ -45,7 +45,7 @@ button:hover {
 
 button:disabled,
 button[disabled] {
-  border: 1px solid #999999;
+  border: none;
   background-color: #cccccc;
   color: #666666; }
 
@@ -390,7 +390,6 @@ button[disabled] {
 
 .image-display-container .display-flex {
   width: 100% !important;
-  margin-left: -80px !important;
   margin-top: 4px !important; }
 
 .sudmit-button {

@@ -1,47 +1,34 @@
 import React, {Component} from 'react';
-import brightBabylogo from './../../brightbaby.svg';
+import logo from './../../SpruceBaby.svg';
 import axios from 'axios';
 class FilePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: [
-        brightBabylogo, brightBabylogo, brightBabylogo
-      ],
-      image: {
-        image: brightBabylogo,
-        id: 0
-      },
-      formButtonText: 'VIEW',
+      images: [],
+      image: {},
       saveImages: [],
       previousSavedRef: "image0",
       imageHasBeenChanged:false,
     }
-    this.handleSubmit = this
-      .handleSubmit
-      .bind(this);
-    this.switchImage = this
-      .switchImage
-      .bind(this);
-    this.saveImages = this
-      .saveImages
-      .bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.switchImage = this.switchImage.bind(this);
+    this.saveImages = this.saveImages.bind(this);
   }
 
   componentDidMount() {
-    this.refs[this.state.previousSavedRef].style.border = "solid 1px rgb(255,187,0)";    
-    axios
-      .get(`/api/products/getImages/${this.props.productId}`)
+    // this.refs[this.state.previousSavedRef].style.border = "solid 1px #178E16";    
+    axios.get(`/api/products/getImages/${this.props.productId}`)
       .then((response) => {
         let images = response
           .data
           .map((image) => {
             return image.imagepath
-            // return require(`../../../uploads/${image.imagepath}`);
+            // return {productid: image.productid, imageid:image.imageid, imagepath:require(`../../../uploads/${image.imagepath}`)};
           });
         if (response.data.length < 3) {
           for (let i = response.data.length; i < 3; i++) {
-            images.push(brightBabylogo)
+            images.push(logo)
           }
         }
         this.setState({
@@ -63,7 +50,7 @@ class FilePicker extends Component {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-          HelloWorld(reader.result, file)
+          showPreview(reader.result, file)
         };
         reader.onerror = function (error) {
           console.log('Error: ', error);
@@ -71,12 +58,9 @@ class FilePicker extends Component {
       }
     }
 
-    function HelloWorld(info, file) {
+    function showPreview(info, file) {
       let index;
-      let arr = this
-        .state
-        .images
-        .map((image, i) => {
+      let arr = this.state.images.map((image, i) => {
           if (i === this.state.image.id) {
             index = i;
             return null
@@ -105,8 +89,7 @@ class FilePicker extends Component {
       });
 
     }
-
-    HelloWorld = HelloWorld.bind(this);
+    showPreview = showPreview.bind(this);
     getBase64(this.fileInput.files[0])
   }
 
@@ -114,7 +97,7 @@ class FilePicker extends Component {
     if(this.state.previousSavedRef){
       this.refs[this.state.previousSavedRef].style.border = "solid 1px grey";
     }
-    this.refs[`image${i}`].style.border = "solid 1px rgb(255,187,0)";
+    this.refs[`image${i}`].style.border = "solid 1px #178E16";
     this.setState({
       image: {
         image: image,
@@ -139,19 +122,16 @@ class FilePicker extends Component {
     });
   }
   render() {
-    let images = this
-      .state
-      .images
-      .map((image, i) => {
+    let images = this.state.images.map((image, i) => {
         return <div
           ref={`image${i}`}
-          key={i}
+          key={image.imageid}
           className="small-image"
           onClick={() => {
           this.switchImage(image, i)
         }}
           style={{
-          backgroundImage: `url('${image}')`,
+          backgroundImage: `url('${image.imagepath}')`,
         }}/>
       })
 
@@ -186,7 +166,7 @@ class FilePicker extends Component {
 
           <br/>
           <button type="submit">
-            {this.state.formButtonText}
+            VIEW
           </button>
           {sudmitButton}
         </form>

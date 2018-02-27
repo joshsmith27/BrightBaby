@@ -40,7 +40,8 @@ class AdminItemForm extends Component {
 		 Price: this.state.price,
 		 Description: this.state.description,
 		 MoreInformation: this.state.moreinformation,
-		 Quanity: this.state.avaliablequantity
+		 Quanity: this.state.avaliablequantity,
+		 ProductImages: this.state.imagesToSave
 	 }
 	 this.props.UpdateProduct(this.props.match.params.id, product)
  }
@@ -78,7 +79,7 @@ class AdminItemForm extends Component {
 				</div>
 				<div className="saveQuanity-container">
 					<div className="display-flex">
-						<p>Current Quanity:</p>
+						<p>Avaliable Quanity:</p>
 						<input type="number" className="quanity-input" name="avaliablequantity" onChange={this.changeInput}  value={this.state.avaliablequantity}/>
 					</div>
 					<button className="addToCartButton biggerButton" onClick={this.updateProduct}>Save</button>
