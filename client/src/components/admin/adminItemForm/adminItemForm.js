@@ -84,6 +84,7 @@ class AdminItemForm extends Component {
 					</div>
 					<button className="addToCartButton biggerButton" onClick={this.updateProduct}>Save</button>
 				</div>
+				<Loader/>
 			</div>
 		);
 	}else{

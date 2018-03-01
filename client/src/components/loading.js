@@ -1,10 +1,23 @@
 import React, {Component} from 'react';
-import loader from '../loading.gif'
+import Lottie from 'react-lottie';
+import * as animationData from '../LoadingTree.json'
 export default class Loader extends Component {
+    
     render(){
+        const buttonStyle = {
+            display: 'block',
+            margin: '10px auto'
+          };
+        const defaultOptions = {
+            loop: true,
+            autoplay: true, 
+            animationData: animationData,
+          };
         return (
-            <div>
-                <img src={loader} alt=""/>
+            <div id="loader">
+            <Lottie options={defaultOptions}
+              height={400}
+              width={400}/>
             </div>
         );
     }
