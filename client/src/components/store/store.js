@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import {GetProducts, AddToCart} from '../../actions/action';
-
+import Loader from '../loading';
 import Item from './item/item';
 class Store extends Component {
-
+	constructor(){
+		super()
+		this.state = {
+			isLoaded : false,
+		}
+	}
 	componentWillMount(){
 		this.props.GetProducts();
 	}
 	render() {
-		let Items = <div>Loading...</div>;
+		let Items = <Loader/>;
 		
 		var propType = typeof this.props.products;
 		if(this.props.products.length > 0 && propType !== 'string' ){
