@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import {GetDetails, AddToCart} from '../../../actions/action';
+import Loading from '../../loading';
 
 
 class Details extends Component {
@@ -58,7 +59,7 @@ class Details extends Component {
 				</div>
 			);
 		}else{
-			return (<div>loading...</div>)
+			return (<Loading/>)
 		}
 
 	}

@@ -13,6 +13,9 @@ p {
 .display-flex {
   display: flex; }
 
+div#loader {
+  margin-top: 170px; }
+
 .input {
   border: none; }
 

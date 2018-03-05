@@ -20,15 +20,12 @@ class FilePicker extends Component {
     // this.refs[this.state.previousSavedRef].style.border = "solid 1px #178E16";    
     axios.get(`/api/products/getImages/${this.props.productId}`)
       .then((response) => {
-        let images = response
-          .data
-          .map((image) => {
-            return image.imagepath
-            // return {productid: image.productid, imageid:image.imageid, imagepath:require(`../../../uploads/${image.imagepath}`)};
+        let images = response.data.map((image) => {
+            return {productid: image.productid, imageid:image.imageid, imagepath:require(`../../../uploads/${image.imagepath}`)};
           });
         if (response.data.length < 3) {
           for (let i = response.data.length; i < 3; i++) {
-            images.push(logo)
+            images.push({productid: 0, imageid:0, imagepath:logo})
           }
         }
         this.setState({
@@ -42,7 +39,6 @@ class FilePicker extends Component {
   }
 
   handleSubmit(event) {
-    debugger
     event.preventDefault();
 
     function getBase64(file) {

@@ -12,11 +12,15 @@ class Store extends Component {
 		}
 	}
 	componentWillMount(){
-		this.props.GetProducts();
+		this.props.GetProducts()
+		.then(()=>{
+			this.setState({
+				isLoaded: true,
+			});
+		})
 	}
 	render() {
-		let Items = <Loader/>;
-		
+		let Items = [];
 		var propType = typeof this.props.products;
 		if(this.props.products.length > 0 && propType !== 'string' ){
 			Items = this.props.products[0].map((e)=>{
@@ -31,18 +35,21 @@ class Store extends Component {
 			></Item>
 		});
 		
-		}else{
-			Items = <div>{this.props.products}</div>
 		}
-		return (
-			<div className ="store-main-container">
-			<p className="Yellow-Text store-header">STORE</p>
-			<div className="store-inner-container">
-			{Items}
-			</div>
-			</div>
-			
-		);
+		if (this.state.isLoaded){
+			return (
+				<div className ="store-main-container">
+				<p className="Yellow-Text store-header">STORE</p>
+				<div className="store-inner-container">
+				{Items}
+				</div>
+				</div>
+			);
+		}else {
+			return(
+				<Loader/>
+			);
+		}
 	}
 }
 function mapStateToProps({products}){

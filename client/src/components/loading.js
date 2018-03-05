@@ -16,8 +16,8 @@ export default class Loader extends Component {
         return (
             <div id="loader">
             <Lottie options={defaultOptions}
-              height={400}
-              width={400}/>
+              height={175}
+              width={175}/>
             </div>
         );
     }

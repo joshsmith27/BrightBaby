@@ -5,10 +5,22 @@ import {GetProducts} from '../../actions/action';
 import NewItemForm from './adminItem';
 import { Link } from 'react-router-dom';
 import DefaultImage from '../../addImage2.png';
+import Loader from '../loading'
 
 class Admin extends Component {
+  constructor(){
+    super()
+    this.state = {
+      isLoaded: false,
+    }
+  }
 	componentWillMount(){
-		this.props.GetProducts();
+    this.props.GetProducts()
+    .then(()=>{
+      this.setState({
+        isLoaded: true,
+      })
+    })
 	}
 
   render() {
@@ -33,27 +45,20 @@ class Admin extends Component {
         productId = "0"
         />
     )
-		}else{
-			NewItemForms = [<div key={0}>{this.props.products}</div>]
-      NewItemForms.push(
-          <NewItemForm
-            key={"Add New Item"}
-            productName="Add New Item"
-            productImage= {DefaultImage}
-            productQuanity= "0"
-            productId = "0"
-            />
-      )
 		}
-    return (
-      <div className="admin-main-container">
-        <p className="Yellow-Text admin-header">Admin</p>
-        <p className="Grey-Text admin-subTitle">Choose an item to edit or add a new item.</p>
-        <div className="display-flex adminItemContainer">
-        {NewItemForms}
+    if(this.state.isLoaded){
+      return (
+        <div className="admin-main-container">
+          <p className="Yellow-Text admin-header">Admin</p>
+          <p className="Grey-Text admin-subTitle">Choose an item to edit or add a new item.</p>
+          <div className="display-flex adminItemContainer">
+          {NewItemForms}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }else{
+     return  <Loader/>
+    }
   }
 }
 

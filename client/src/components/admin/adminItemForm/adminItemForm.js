@@ -65,7 +65,6 @@ class AdminItemForm extends Component {
 					<FilePicker productId={this.props.details.details.productid} saveImageNames={this.saveImageNames}/>: 
 					""
 				}
-				
 					<div className = "detail-details">
 						<input placeholder="Title..." name="name" onChange={this.changeInput} className="input Yellow-Text name" value={this.state.name} />
 						<br/>
@@ -84,7 +83,6 @@ class AdminItemForm extends Component {
 					</div>
 					<button className="addToCartButton biggerButton" onClick={this.updateProduct}>Save</button>
 				</div>
-				<Loader/>
 			</div>
 		);
 	}else{
