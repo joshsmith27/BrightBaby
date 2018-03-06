@@ -416,7 +416,7 @@ button[disabled] {
 .small-image {
   height: 75px;
   width: 75px;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   border: solid 1px;

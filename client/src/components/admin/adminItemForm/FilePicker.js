@@ -17,7 +17,6 @@ class FilePicker extends Component {
   }
 
   componentDidMount() {
-    // this.refs[this.state.previousSavedRef].style.border = "solid 1px #178E16";    
     axios.get(`/api/products/getImages/${this.props.productId}`)
       .then((response) => {
         let images = response.data.map((image) => {
@@ -31,7 +30,7 @@ class FilePicker extends Component {
         this.setState({
           images,
           image: {
-            image: response.data[0].imagepath,
+            image: require(`../../../uploads/${response.data[0].imagepath}`),
             id: 0
           },
         })
@@ -96,7 +95,7 @@ class FilePicker extends Component {
     this.refs[`image${i}`].style.border = "solid 1px #178E16";
     this.setState({
       image: {
-        image: image,
+        image: image.imagepath,
         id: i
       },
       previousSavedRef:`image${i}`
