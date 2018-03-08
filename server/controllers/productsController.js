@@ -125,7 +125,6 @@ module.exports = {
 		});
 	},
 	uploadImages: (req, res)=>{
-		debugger
 		let data = req.files.map((file) =>{
 		  return file.filename
 		})

@@ -67,7 +67,8 @@ class FilePicker extends Component {
         if (image) {
           return image;
         } else {
-          return info;
+
+          return {imagepath:info};
         }
       })
       this.setState({
@@ -102,7 +103,9 @@ class FilePicker extends Component {
     })
   }
 
-  saveImages() {
+  saveImages(event) {
+
+    event.preventDefault();
     let formData = new FormData();
     this.state.saveImages.map((image, i)=>{
         formData.append(`photos`, image);
@@ -113,7 +116,7 @@ class FilePicker extends Component {
       }
     })
     .then((response)=>{
-      this.props.saveImageNames(response.data)
+      this.props.saveImageNames(event, response.data)
     });
   }
   render() {
@@ -131,9 +134,9 @@ class FilePicker extends Component {
       })
 
     let sudmitButton = this.state.imageHasBeenChanged ? 
-    <button className="sudmit-button" ref="sub" onClick={this.saveImages}>SUBMIT</button>          
+    <button type="button" className="sudmit-button" ref="sub"  onClick={this.saveImages}>SUBMIT</button>          
     :
-    <button className="sudmit-button" ref="sub" disabled onClick={this.saveImages}>SUBMIT</button>          
+    <button type="button" className="sudmit-button" ref="sub"  disabled onClick={this.saveImages}>SUBMIT</button>          
     
     return (
       <div className="image-display-container">
@@ -147,6 +150,8 @@ class FilePicker extends Component {
             backgroundImage: `url('${this.state.image.image}')`
           }}/>
         </div>
+
+        <div className="form-container">
 
         <form onSubmit={this.handleSubmit}>
           <label>
@@ -163,8 +168,9 @@ class FilePicker extends Component {
           <button type="submit">
             VIEW
           </button>
-          {sudmitButton}
         </form>
+          {sudmitButton}
+        </div>
 
       </div>
 

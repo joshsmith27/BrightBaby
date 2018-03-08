@@ -146,9 +146,8 @@ button[disabled] {
   .cart-main-container .cart-image {
     border: 1px solid;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
-    border-radius: 180px;
     width: 100%;
     max-width: 150px;
     height: 150px; }
@@ -197,7 +196,7 @@ button[disabled] {
 .ProductImage {
   border: 1px solid;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   border-radius: 0px;
   width: 100%;
@@ -354,7 +353,7 @@ button[disabled] {
   .admin-main-container .cart-image {
     border: 1px solid;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     border-radius: 0px;
     width: 100%;

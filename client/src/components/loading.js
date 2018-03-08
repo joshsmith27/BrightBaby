@@ -9,7 +9,7 @@ export default class Loader extends Component {
             margin: '10px auto'
           };
         const defaultOptions = {
-            loop: true,
+            loop: false,
             autoplay: true, 
             animationData: animationData,
           };

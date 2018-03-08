@@ -9,7 +9,7 @@ class Item extends Component {
     return (
       <div className="item-main-container">
         <Link className="Links" to={`/details/${this.props.productId}`}>
-          <div className="ProductImage" style={{backgroundImage: "url(" + this.props.productImage + ")"}}/>
+          <div className="ProductImage" style={{backgroundImage: "url(" + this.props.productImage+ ")"}}/>
           <div className="item-detail-container">
             <h4>{this.props.title.toUpperCase()}</h4>
             <p className="price">{`$${Number(this.props.price).toFixed(2)}`}</p>
