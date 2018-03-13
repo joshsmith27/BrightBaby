@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import logo from './../../SpruceBaby.svg';
+import logo from './../../../Media/SpruceBaby.svg';
 import axios from 'axios';
 class FilePicker extends Component {
   constructor(props) {

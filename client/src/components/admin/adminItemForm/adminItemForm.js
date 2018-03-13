@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import {GetDetails, UpdateProduct} from '../../../actions/action';
+import {GetDetails, UpdateProduct} from '../../../Redux/actions/action';
 import FilePicker from './FilePicker';
-import DefaultImage from '../../../addImage2.png';
 import Loader from '../../loading';
 
 class AdminItemForm extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import {GetDetails, AddToCart} from '../../../actions/action';
+import {GetDetails, AddToCart} from '../../../Redux/actions/action';
 import Loading from '../../loading';
 
 

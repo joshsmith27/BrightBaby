@@ -4,9 +4,8 @@ import './style.css';
 import App from './components/App';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import registerServiceWorker from './registerServiceWorker';
 import promiseMiddleware from 'redux-promise-middleware';
-import reducers from './reducer';
+import reducers from './Redux/reducer';
 
 
 
@@ -21,4 +20,3 @@ const store = createStore(reducers, composeEnhancers(
   <Provider store={store}>
     <App />
   </Provider>, document.getElementById('root'));
-registerServiceWorker();

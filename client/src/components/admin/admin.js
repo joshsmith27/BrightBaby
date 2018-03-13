@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import {GetProducts} from '../../actions/action';
+import {GetProducts} from '../../Redux/actions/action';
 import NewItemForm from './adminItem';
 import { Link } from 'react-router-dom';
-import DefaultImage from '../../addImage2.png';
 import Loader from '../loading'
+import DefaultImage from '../../Media/addImage2.png';
 
 class Admin extends Component {
   constructor(){

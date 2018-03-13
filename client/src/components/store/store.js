@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import {GetProducts, AddToCart} from '../../actions/action';
+import {GetProducts, AddToCart} from '../../Redux/actions/action';
 import Loader from '../loading';
 import Item from './item/item';
 class Store extends Component {

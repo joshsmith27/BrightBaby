@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Lottie from 'react-lottie';
-import * as animationData from '../LoadingTree.json'
+import * as animationData from '../Media/LoadingTree.json'
 export default class Loader extends Component {
     
     render(){

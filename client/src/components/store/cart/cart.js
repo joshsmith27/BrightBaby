@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CartItem from './cart_item.js';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import {GetCart, RemoveCartItem, UpdateCartItem} from '../../../actions/action';
+import {GetCart, RemoveCartItem, UpdateCartItem} from '../../../Redux/actions/action';
 
 class Cart extends Component {
 
