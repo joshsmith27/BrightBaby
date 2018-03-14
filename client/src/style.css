@@ -63,6 +63,17 @@ button[disabled] {
   color: #8c8c8c;
   text-align: justify; }
 
+.App .ShoppingBag-Container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 0px; }
+.App .ShoppingBag {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 20px;
+  top: 10px; }
 .App img {
   width: 100%;
   margin: auto; }

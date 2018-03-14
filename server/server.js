@@ -12,13 +12,14 @@ const serverController = require('./controllers/serverController.js')
 
 
 const app = express();
+app.use(express.static(path.join(__dirname, '../client/build')));
 massive( process.env.CONNECTION_STRING ).then( (dbInstance) =>
   {
     app.set('db', dbInstance);
   });
 
 app.use( bodyParser.json() );
-// app.use(express.static(path.resolve(__dirname, '../client/build')));
+
 
 app.get('/api/products/getproducts', productsEndpoints.getProducts);
 app.get(`/api/products/getDetails/:id`, productsEndpoints.getDetails);

@@ -1,11 +1,22 @@
-.App{
-
-  img{
+.App {
+  .ShoppingBag-Container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 0px;
+  }
+  .ShoppingBag {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+  }
+  img {
     width: 100%;
     margin: auto;
   }
-  .logo-container{
-
+  .logo-container {
     display: -ms-flexbox;
     /* display: flex; */
     background-position: center;
@@ -14,52 +25,45 @@
     height: 200px;
     margin: auto;
     -ms-flex-pack: center;
-
   }
   .cart-text {
-      height: 17.1px;
-      width: 27px;
-      font-size: 8px;
-      padding-top: 10.1px;
-      border-radius: 46px;
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-pack: center;
-      justify-content: center;
-      border: 1px solid #8c8c8c;
-      position: absolute;
-      background-color: white;
-      top: 6px;
-      right: 20px;
-}
-
-.cart-container {
-  position: fixed;
-  width: 100%;
-}
-
-
-.cart-quanity {
-  font-size: 9px;
-  width: 34%;
-  height: 45%;
-  padding-top: 2px;
-  padding-left: 3.35px;
-  border-radius: 50px;
-  border: 1px solid grey;
-  top: 19px;
-  left: -1px;
-  z-index: 2;
-  background: #fff;
-  position: absolute;
-}
-
-
-  .Links{
+    height: 17.1px;
+    width: 27px;
+    font-size: 8px;
+    padding-top: 10.1px;
+    border-radius: 46px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border: 1px solid #8c8c8c;
+    position: absolute;
+    background-color: white;
+    top: 6px;
+    right: 20px;
+  }
+  .cart-container {
+    position: fixed;
+    width: 100%;
+  }
+  .cart-quanity {
+    font-size: 9px;
+    width: 34%;
+    height: 45%;
+    padding-top: 2px;
+    padding-left: 3.35px;
+    border-radius: 50px;
+    border: 1px solid grey;
+    top: 19px;
+    left: -1px;
+    z-index: 2;
+    background: #fff;
+    position: absolute;
+  }
+  .Links {
     text-decoration: none;
     color: $Gray
   }
- 
   nav.nav-container {
     width: 40%;
     margin: 30px auto;
@@ -71,14 +75,14 @@
     justify-content: space-evenly;
     border-bottom: none;
   }
-  nav.nav-container > a {
+  nav.nav-container>a {
     text-decoration: none;
     color: $Gray;
     font-family: $Primary-font;
     height: 21px;
     border-bottom: solid 1px white;
   }
-  nav.nav-container > a:hover {
+  nav.nav-container>a:hover {
     font-weight: bold;
   }
 }
