@@ -26,7 +26,7 @@ class Store extends Component {
 			Items = this.props.products[0].map((e)=>{
 				return <Item
 				key={e.productid}
-				productImage={e.productImages.length > 0 ? require(`../../uploads/${e.productImages[0].imagepath}`) : ""}
+				productImage={e.productImages.length > 0 ? `/uploads/${e.productImages[0].imagepath}` : ""}
 				title={e.name}
 				price={e.price}
 				productId = {e.productid}
@@ -47,6 +47,7 @@ class Store extends Component {
 			);
 		}else {
 			return(
+				
 				<Loader/>
 			);
 		}

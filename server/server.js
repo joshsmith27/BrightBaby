@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const massive = require('massive');
 const multer  = require('multer')
-const upload = multer({ dest: 'client/src/uploads/' })
+const upload = multer({ dest: './server/uploads/' })
 require('dotenv').config()
 const productsEndpoints = require('./controllers/productsController.js')
 const serverController = require('./controllers/serverController.js')
@@ -13,8 +13,10 @@ const serverController = require('./controllers/serverController.js')
 
 const app = express();
 app.use(express.static(path.join(__dirname, '../client/build')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 massive( process.env.CONNECTION_STRING ).then( (dbInstance) =>
   {
+    console.log('The DB is up and running')
     app.set('db', dbInstance);
   });
 

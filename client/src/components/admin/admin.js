@@ -30,7 +30,7 @@ class Admin extends Component {
 			NewItemForms = this.props.products[0].map((e)=>{
 				return <NewItemForm
 				key={e.productid}
-				productImage={e.productImages.length > 0 ? require(`../../uploads/${e.productImages[0].imagepath}`) : ""}
+				productImage={e.productImages.length > 0 ? `/uploads/${e.productImages[0].imagepath}` : ""}
 				productName={e.name}
 				productQuanity={e.productQuanity}
 				productId = {e.productid}

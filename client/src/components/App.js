@@ -20,7 +20,6 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Router>
-
 					<ScrollToTop>
 							<div className="cart-container">
 								<Link to={'/cart'}>

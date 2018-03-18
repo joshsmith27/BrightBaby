@@ -38,7 +38,8 @@ module.exports = {
 				console.log(err);
 				res.status(500).send(err);
 			});
-    },
+	},
+
 	getImages:(req, res, next)=>{
 		const dbInstance = dbGetter(req);
 		dbInstance.ProductStoreProcedures.get_product_images(req.params.id)
@@ -124,7 +125,9 @@ module.exports = {
 			res.status(500).send(err);
 		});
 	},
+
 	uploadImages: (req, res)=>{
+		
 		let data = req.files.map((file) =>{
 		  return file.filename
 		})

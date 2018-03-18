@@ -18,7 +18,7 @@ class Cart extends Component {
 				return <CartItem
         key={e.productid}
         productName={e.name}
-        productImage={e.productImages.length > 0 ? require(`../../../uploads/${e.productImages[0].imagepath}`) : ""}
+        productImage={e.productImages.length > 0 ? `/uploads/${e.productImages[0].imagepath}` : ""}
         productQuanity={e.quanity}
         productPrice={e.price}
         productId = {e.productid}

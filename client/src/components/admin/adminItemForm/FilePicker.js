@@ -20,7 +20,7 @@ class FilePicker extends Component {
     axios.get(`/api/products/getImages/${this.props.productId}`)
       .then((response) => {
         let images = response.data.map((image) => {
-            return {productid: image.productid, imageid:image.imageid, imagepath:require(`../../../uploads/${image.imagepath}`)};
+            return {productid: image.productid, imageid:image.imageid, imagepath:`/uploads/${image.imagepath}`};
           });
         if (response.data.length < 3) {
           for (let i = response.data.length; i < 3; i++) {
@@ -30,7 +30,7 @@ class FilePicker extends Component {
         this.setState({
           images,
           image: {
-            image: require(`../../../uploads/${response.data[0].imagepath}`),
+            image: `/uploads/${response.data[0].imagepath}`,
             id: 0
           },
         })
@@ -110,13 +110,18 @@ class FilePicker extends Component {
     this.state.saveImages.map((image, i)=>{
         formData.append(`photos`, image);
     })
-    axios.post('/api/product/add/images', formData, {
+    axios.post('/api/product/add/images', formData, {stuff: 'hello'}, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
     .then((response)=>{
-      this.props.saveImageNames(event, response.data)
+      debugger
+      const rtn = this.state.images.map((image, i)=>{
+        image.imagepath  = response.data[i]
+        return image;
+      })
+      this.props.saveImageNames(rtn)
     });
   }
   render() {
@@ -144,11 +149,7 @@ class FilePicker extends Component {
           <div className="adminSmallForm">
             {images}
           </div>
-          <div
-            className="adminForm-image"
-            style={{
-            backgroundImage: `url('${this.state.image.image}')`
-          }}/>
+          <div className="adminForm-image" style={{backgroundImage: `url('${this.state.image.image}')`}}/>
         </div>
 
         <div className="form-container">
@@ -158,12 +159,7 @@ class FilePicker extends Component {
             Upload file:
           </label>
           <br/>
-          <input
-            type="file"
-            ref={input => {
-            this.fileInput = input;
-          }}/>
-
+          <input type="file" ref={input => { this.fileInput = input;}}/>
           <br/>
           <button type="submit">
             VIEW

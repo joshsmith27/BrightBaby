@@ -27,9 +27,7 @@ class AdminItemForm extends Component {
 		});
 	}
 
-	saveImageNames(event, files){
-		debugger
-		event.preventDefault();
+	saveImageNames(files){
 		this.setState({
 			imagesToSave:files
 		})
