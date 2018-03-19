@@ -71,11 +71,13 @@ class FilePicker extends Component {
           return {imagepath:info};
         }
       })
+      file.id = 
       this.setState({
         image: {
           image: info,
           id: index
         },
+
         images,
         imageHasBeenChanged: true,
         saveImages: [
@@ -108,6 +110,7 @@ class FilePicker extends Component {
     event.preventDefault();
     let formData = new FormData();
     this.state.saveImages.map((image, i)=>{
+        newFormObj.append('imageId', internalUserID);
         formData.append(`photos`, image);
     })
     axios.post('/api/product/add/images', formData, {stuff: 'hello'}, {
