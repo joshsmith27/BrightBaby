@@ -10,6 +10,7 @@ class FilePicker extends Component {
       saveImages: [],
       previousSavedRef: "image0",
       imageHasBeenChanged:false,
+      selctedId: 0,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.switchImage = this.switchImage.bind(this);
@@ -71,18 +72,19 @@ class FilePicker extends Component {
           return {imagepath:info};
         }
       })
-      file.id = 
+      const imageToSave = this.state.selctedImage;
+      imageToSave.file = file;
       this.setState({
         image: {
           image: info,
           id: index
         },
-
+        
         images,
         imageHasBeenChanged: true,
         saveImages: [
           ...this.state.saveImages,
-          file
+          imageToSave
         ]
       });
 
@@ -101,31 +103,30 @@ class FilePicker extends Component {
         image: image.imagepath,
         id: i
       },
+      selctedImage: image,
       previousSavedRef:`image${i}`
     })
   }
 
   saveImages(event) {
-
     event.preventDefault();
     let formData = new FormData();
     this.state.saveImages.map((image, i)=>{
-        newFormObj.append('imageId', internalUserID);
-        formData.append(`photos`, image);
+        formData.append(`photos`, image.file);
     })
-    axios.post('/api/product/add/images', formData, {stuff: 'hello'}, {
+    axios.post('/api/product/add/images', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
-    .then((response)=>{
-      debugger
-      const rtn = this.state.images.map((image, i)=>{
-        image.imagepath  = response.data[i]
-        return image;
-      })
-      this.props.saveImageNames(rtn)
-    });
+      .then((response)=>{
+          const rtn = this.state.saveImages.map((image, i)=>{
+            image.imagepath  = response.data[i]
+            delete image.file;
+            return image;
+          })
+          this.props.saveImageNames(rtn)
+        });
   }
   render() {
     let images = this.state.images.map((image, i) => {

@@ -125,9 +125,8 @@ module.exports = {
 			res.status(500).send(err);
 		});
 	},
-
+	
 	uploadImages: (req, res)=>{
-		
 		let data = req.files.map((file) =>{
 		  return file.filename
 		})
