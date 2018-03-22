@@ -45,13 +45,19 @@ class AdminItemForm extends Component {
 	 this.props.UpdateProduct(this.props.match.params.id, product)
  }
 
-	componentWillMount(){
-		const id = this.props.match.params.id;
-		this.props.GetDetails(id)
-		.then((response=>{
-			response.value.data.details.isLoaded = true;
-			this.setState(response.value.data.details)
-		}))
+	componentDidMount(){
+		if(this.props.match.params.id > 0){
+			const id = this.props.match.params.id;
+			this.props.GetDetails(id)
+			.then((response=>{
+				response.value.data.details.isLoaded = true;
+				this.setState(response.value.data.details)
+			}))
+		}else{
+			this.setState({
+				isLoaded:true
+			})
+		}
 	}
 	
 
@@ -60,10 +66,8 @@ class AdminItemForm extends Component {
 		return (
 			<div className="details-main-container">
 				<div className="detail-flex-container image-price-container">
-				{this.state.name !== "" ? 
 					<FilePicker productId={this.props.details.details.productid} saveImageNames={this.saveImageNames}/>: 
-					""
-				}
+
 					<div className = "detail-details">
 						<input placeholder="Title..." name="name" onChange={this.changeInput} className="input Yellow-Text name" value={this.state.name} />
 						<br/>

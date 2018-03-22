@@ -18,7 +18,8 @@ class FilePicker extends Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/products/getImages/${this.props.productId}`)
+    if(this.props.productId){
+      axios.get(`/api/products/getImages/${this.props.productId}`)
       .then((response) => {
         let images = response.data.map((image) => {
             return {productid: image.productid, imageid:image.imageid, imagepath:`/uploads/${image.imagepath}`};
@@ -36,6 +37,16 @@ class FilePicker extends Component {
           },
         })
       })
+    }else{
+      this.setState({
+        images: [{productid: 0, imageid:0, imagepath:logo}, {productid: 0, imageid:0, imagepath:logo}, {productid: 0, imageid:0, imagepath:logo}],
+        image: {
+          image: logo,
+          id: 0
+        },
+      })
+    }
+ 
   }
 
   handleSubmit(event) {
@@ -132,7 +143,7 @@ class FilePicker extends Component {
     let images = this.state.images.map((image, i) => {
         return <div
           ref={`image${i}`}
-          key={image.imageid}
+          key={image.imageid > 0 ? image.imageid : i}
           className="small-image"
           onClick={() => {
           this.switchImage(image, i)
