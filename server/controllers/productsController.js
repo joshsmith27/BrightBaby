@@ -57,7 +57,8 @@ module.exports = {
 		let data = [Name, Price, Description, MoreInformation, Quanity];
 		const dbInstance = dbGetter(req);
 		if(req.params.id < 1){
-            dbInstance.ProductStoreProcedures.create_product(data)
+			dbInstance.ProductStoreProcedures.create_product(data)
+			//Todo use massive helper functions. 
 			.then(product => { 
 				return dbInstance.ProductStoreProcedures.get_newest_product()})
 			.then(product => {
@@ -86,16 +87,19 @@ module.exports = {
 				return dbInstance.ProductStoreProcedures.get_product_images(req.params.id)
 			})
 			.then((images)=>{
-				let imageIds = ProductImages.map((image)=>{
-					return image.imageid
-				})
-				images.map((image)=>{
-					if(imageIds.includes(image.imageid)){
-						dbInstance.ProductStoreProcedures.update_image([image.productid, image.imageid, image.imagepath])
-					}else{
-						dbInstance.ProductStoreProcedures.add_image([productInfo.productid, image.imagepath])
-					}
-				})
+				if(ProductImages.length > 0){
+					let imageIds = images.map((image)=>{
+						return image.imageid
+					})
+					ProductImages.forEach((image)=>{
+						if(imageIds.includes(image.imageid)){
+							dbInstance.ProductStoreProcedures.update_image([image.productid, image.imageid, image.imagepath])
+						}else if(images.length < 3){
+							dbInstance.ProductStoreProcedures.add_image([productInfo.productid, image.imagepath])
+						}
+					})
+				}
+				
 			})
 			
 			.then(product => {
@@ -112,8 +116,9 @@ module.exports = {
 	},
 
 	deleteProduct:( req, res, next )=>{
+
 		const dbInstance = dbGetter(req);
-		dbInstance.delete_product(req,params.productid)
+		dbInstance.product.destroy({productid:req.params.id})
 		.then(product => {
 			return getProducts('0', req)
 			})

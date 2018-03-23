@@ -4,6 +4,7 @@ import { bindActionCreators} from 'redux';
 import {GetDetails, UpdateProduct} from '../../../Redux/actions/action';
 import FilePicker from './FilePicker';
 import Loader from '../../loading';
+import axios from 'axios';
 
 class AdminItemForm extends Component {
 	constructor(props){
@@ -19,7 +20,8 @@ class AdminItemForm extends Component {
 		}
 		this.changeInput = this.changeInput.bind(this);
 		this.saveImageNames = this.saveImageNames.bind(this);
-		this.updateProduct =this.updateProduct.bind(this);
+		this.updateProduct = this.updateProduct.bind(this);
+		this.deleteProduct = this.deleteProduct.bind(this);
 	}
 	changeInput(e){
 		this.setState({
@@ -33,18 +35,24 @@ class AdminItemForm extends Component {
 		})
 	}
 
- updateProduct(){
-	 let product = {
-		 Name: this.state.name,
-		 Price: this.state.price,
-		 Description: this.state.description,
-		 MoreInformation: this.state.moreinformation,
-		 Quanity: this.state.avaliablequantity,
-		 ProductImages: this.state.imagesToSave
-	 }
-	 this.props.UpdateProduct(this.props.match.params.id, product)
- }
-
+	updateProduct(){
+		let product = {
+			Name: this.state.name,
+			Price: this.state.price,
+			Description: this.state.description,
+			MoreInformation: this.state.moreinformation,
+			Quanity: this.state.avaliablequantity,
+			ProductImages: this.state.imagesToSave
+		}
+		this.props.UpdateProduct(this.props.match.params.id, product)
+	}
+	deleteProduct(){
+		debugger
+		axios.delete(`/api/products/delete/${this.props.match.params.id}`)
+			.then(()=>{
+				this.props.history.push('/admin');
+			})
+	}
 	componentDidMount(){
 		if(this.props.match.params.id > 0){
 			const id = this.props.match.params.id;
@@ -62,6 +70,10 @@ class AdminItemForm extends Component {
 	
 
 	render() {
+	let button;
+	if(this.props.match.params.id != 0){
+		button = <button className="addToCartButton biggerButton" onClick={this.deleteProduct}>Delete</button>
+	}
 	if(this.state.isLoaded)	{
 		return (
 			<div className="details-main-container">
@@ -84,7 +96,12 @@ class AdminItemForm extends Component {
 						<p>Avaliable Quanity:</p>
 						<input type="number" className="quanity-input" name="avaliablequantity" onChange={this.changeInput}  value={this.state.avaliablequantity}/>
 					</div>
+					<div className="admin-button-container">
 					<button className="addToCartButton biggerButton" onClick={this.updateProduct}>Save</button>
+					{button}
+					</div>
+				
+					
 				</div>
 			</div>
 		);

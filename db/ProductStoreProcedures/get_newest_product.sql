@@ -1,3 +1,4 @@
-Select * From  product
+Select *
+from product
 order by productid desc
-limit 1
+limit 1;

@@ -401,6 +401,13 @@ button[disabled] {
   .saveQuanity-container div {
     margin-bottom: 30px; }
 
+.admin-button-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .admin-button-container button {
+    min-width: 100px; }
+
 .image-display-container .display-flex {
   width: 100% !important;
   margin-top: 4px !important; }
