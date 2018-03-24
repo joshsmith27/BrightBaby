@@ -116,7 +116,7 @@ module.exports = {
 	},
 
 	deleteProduct:( req, res, next )=>{
-
+		//Todo use massive helper function
 		const dbInstance = dbGetter(req);
 		dbInstance.product.destroy({productid:req.params.id})
 		.then(product => {
