@@ -136,5 +136,10 @@ module.exports = {
 		  return file.filename
 		})
 		res.send(data)
+	  },
+
+	  getHomeProduct:(req, res)=>{
+		const dbInstance = dbGetter(req);
+		
 	  }
 }

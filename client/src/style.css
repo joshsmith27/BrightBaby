@@ -1,7 +1,7 @@
 body {
   font-family: Quicksand;
   background: white;
-  color: #8c8c8c;
+  color: black;
   border-radius: 4px; }
 
 body * {
@@ -57,10 +57,10 @@ button[disabled] {
   font-weight: bold; }
 
 .Purple-Text {
-  color: #c19cc7; }
+  color: black; }
 
 .Normal-Text {
-  color: #8c8c8c;
+  color: black;
   text-align: justify; }
 
 .App .ShoppingBag-Container {
@@ -119,7 +119,7 @@ button[disabled] {
   position: absolute; }
 .App .Links {
   text-decoration: none;
-  color: #8c8c8c; }
+  color: black; }
 .App nav.nav-container {
   width: 40%;
   margin: 30px auto;
@@ -132,7 +132,7 @@ button[disabled] {
   border-bottom: none; }
 .App nav.nav-container > a {
   text-decoration: none;
-  color: #8c8c8c;
+  color: black;
   font-family: Quicksand;
   height: 21px;
   border-bottom: solid 1px white; }
@@ -169,7 +169,7 @@ button[disabled] {
       margin-left: 1px;
       width: 30%;
       padding-left: 4px;
-      color: #8c8c8c;
+      color: black;
       font-family: Quicksand; }
     .cart-main-container .image-quanity-container .quanityText {
       position: relative;
@@ -220,7 +220,7 @@ button[disabled] {
 
 .price {
   font-weight: lighter;
-  color: #c19cc7; }
+  color: black; }
 
 .item-detail-container {
   width: 100%;
@@ -379,7 +379,7 @@ button[disabled] {
       margin-left: 1px;
       width: 30%;
       padding-left: 4px;
-      color: #8c8c8c;
+      color: black;
       font-family: Quicksand; }
     .admin-main-container .image-quanity-container .quanityText {
       position: relative;

@@ -1,5 +1,5 @@
 module.exports = {
-  dbGetter: (req)=>{
+  dbGetter: (req, res, next)=>{
       return req.app.get('db');
   }
 }

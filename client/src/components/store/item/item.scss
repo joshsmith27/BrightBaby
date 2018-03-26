@@ -11,28 +11,28 @@
 }
 
 .ProductImage:hover {
-  cursor: pointer;
-}
-.price{
-    font-weight: lighter;
-    color: $Purple;
+    cursor: pointer;
 }
 
-.item-detail-container {   
+.price {
+    font-weight: lighter;
+    color: $Secondary-Color;
+}
+
+.item-detail-container {
     width: 100%;
     max-width: 220px;
     text-align: center;
     margin: auto;
     margin-top: 20px;
 }
+
 .item-detail-container:hover {
     cursor: pointer;
-    
 }
 
-.item-detail-container > * {
+.item-detail-container>* {
     margin: 0;
-   
 }
 
 .item-main-container {
@@ -43,6 +43,7 @@
     margin-bottom: 115px;
     text-align: center;
 }
+
 .addToCartButton {
     margin-top: 10px;
     padding: 7px;

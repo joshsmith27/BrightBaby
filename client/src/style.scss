@@ -1,32 +1,35 @@
 @import "variables";
-body{
+body {
   font-family: $Primary-font;
   background: white;
   color: $Gray;
-  border-radius: 4px; 
+  border-radius: 4px;
 }
-body *{
-  font-family: $Primary-font; 
+
+body * {
+  font-family: $Primary-font;
 }
-p{
+
+p {
   margin: 0px;
 }
 
-.display-flex{
+.display-flex {
   display: flex;
 }
 
 div#loader {
   margin-top: 170px;
 }
-.input{
+
+.input {
   border: none;
 }
 
 textarea {
   width: 100%;
   border: none;
-  font-family: $Primary-font; 
+  font-family: $Primary-font;
 }
 
 .textarea {
@@ -35,42 +38,48 @@ textarea {
   resize: vertical;
 }
 
-.min-width-div{
+.min-width-div {
   min-width: 265px;
 }
 
-.hover:hover{
+.hover:hover {
   font-weight: bold;
   cursor: pointer;
 }
 
-button{
+button {
   border-radius: 4px;
   background: $AccentColor1;
   color: $White;
   border: none;
-  font-size:10px;
+  font-size: 10px;
 }
-button:hover{
+
+button:hover {
   cursor: pointer;
 }
+
 button:disabled,
-button[disabled]{
+button[disabled] {
   border: none;
   background-color: #cccccc;
   color: #666666;
 }
+
 .Yellow-Text {
   color: $AccentColor1;
   font-weight: bold;
 }
+
 .Purple-Text {
-  color: $Purple;
+  color: $Secondary-Color;
 }
+
 .Normal-Text {
   color: $Gray;
   text-align: justify;
 }
+
 @import "components/app";
 @import "components/store/cart/cart";
 @import "components/store/store";
