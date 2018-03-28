@@ -15,6 +15,7 @@ class FilePicker extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.switchImage = this.switchImage.bind(this);
     this.saveImages = this.saveImages.bind(this);
+    this.makeDefault = this.makeDefault.bind(this);
   }
 
   componentDidMount() {
@@ -22,24 +23,24 @@ class FilePicker extends Component {
       axios.get(`/api/products/getImages/${this.props.productId}`)
       .then((response) => {
         let images = response.data.map((image) => {
-            return {productid: image.productid, imageid:image.imageid, imagepath:`/uploads/${image.imagepath}`};
+            return {productid: image.productid, imageid:image.imageid, imagepath:`/uploads/${image.imagepath}`, isdefault:image.isdefault};
           });
         if (response.data.length < 3) {
           for (let i = response.data.length; i < 3; i++) {
-            images.push({productid: 0, imageid:0, imagepath:logo})
+            images.push({productid: 0, imageid:0, imagepath:logo, isdefault:false})
           }
         }
         this.setState({
           images,
           image: {
-            image: `/uploads/${response.data[0].imagepath}`,
+            image: response.data[0] ? `/uploads/${response.data[0].imagepath}` : "",
             id: 0
           },
         })
       })
     }else{
       this.setState({
-        images: [{productid: 0, imageid:0, imagepath:logo}, {productid: 0, imageid:0, imagepath:logo}, {productid: 0, imageid:0, imagepath:logo}],
+        images: [{productid: 0, imageid:0, imagepath:logo, isdefault:false}, {productid: 0, imageid:0, imagepath:logo, isdefault:false}, {productid: 0, imageid:0, imagepath:logo, isdefault:false}],
         image: {
           image: logo,
           id: 0
@@ -112,9 +113,11 @@ class FilePicker extends Component {
     this.setState({
       image: {
         image: image.imagepath,
-        id: i
+        id: i,
+        isdefault: image.isdefault
       },
       selctedImage: image,
+      selctedId: image.imageid,
       previousSavedRef:`image${i}`
     })
   }
@@ -132,12 +135,28 @@ class FilePicker extends Component {
     })
       .then((response)=>{
           const rtn = this.state.saveImages.map((image, i)=>{
-            image.imagepath  = response.data[i]
+            image.imagepath = response.data[i]
             delete image.file;
             return image;
           })
           this.props.saveImageNames(rtn)
         });
+  }
+
+  makeDefault(){
+    const saveImages = this.state.saveImages.map((image, i)=>{
+        if(Number(this.state.previousSavedRef.replace(/\D/g,'')) === i){
+          image.isdefault = true;
+        }else{
+          image.isdefault =false;
+        }
+        return image;
+    });
+    this.setState(
+      {
+        saveImages
+      }
+    )
   }
   render() {
     let images = this.state.images.map((image, i) => {
@@ -157,7 +176,10 @@ class FilePicker extends Component {
     <button type="button" className="sudmit-button" ref="sub"  onClick={this.saveImages}>SUBMIT</button>          
     :
     <button type="button" className="sudmit-button" ref="sub"  disabled onClick={this.saveImages}>SUBMIT</button>          
-    
+    let isDefaultButton = this.state.imageHasBeenChanged ? 
+    <button className="sudmit-button" onClick={this.makeDefault}>MAKE DEFAULT</button> 
+    : 
+    <button className="sudmit-button" onClick={this.makeDefault} disabled>MAKE DEFAULT</button>
     return (
       <div className="image-display-container">
         <div className="display-flex">
@@ -180,7 +202,11 @@ class FilePicker extends Component {
             VIEW
           </button>
         </form>
+          {isDefaultButton}
+          <br/>
           {sudmitButton}
+          <br/>
+          
         </div>
 
       </div>

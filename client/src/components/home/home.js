@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Loader from '../loading'
+import Loader from '../loading';
+import axios from 'axios';
 class Home extends Component {
 	constructor(props){
 		super(props)
@@ -9,6 +10,17 @@ class Home extends Component {
 			products: []
 		}
 	}
+
+	componentDidMount(){
+		axios.get('/api/gethomeproducts')
+		.then((products)=>{
+			this.setState({
+				products: products.data,
+				isLoaded: true,
+			})
+		})
+	}
+
 	render() {
 
 		const productCards = this.state.products.map((product)=>{

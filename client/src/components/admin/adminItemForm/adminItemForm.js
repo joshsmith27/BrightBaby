@@ -5,6 +5,7 @@ import {GetDetails, UpdateProduct} from '../../../Redux/actions/action';
 import FilePicker from './FilePicker';
 import Loader from '../../loading';
 import axios from 'axios';
+import YesNo from './YesNo';
 
 class AdminItemForm extends Component {
 	constructor(props){
@@ -17,11 +18,13 @@ class AdminItemForm extends Component {
 			description: '',
 			moreinformation: '',
 			imagesToSave: [],
+			ishomeproduct: false,
 		}
 		this.changeInput = this.changeInput.bind(this);
 		this.saveImageNames = this.saveImageNames.bind(this);
 		this.updateProduct = this.updateProduct.bind(this);
 		this.deleteProduct = this.deleteProduct.bind(this);
+		this.changeIsHomeProduct = this.changeIsHomeProduct.bind(this);
 	}
 	changeInput(e){
 		this.setState({
@@ -42,14 +45,19 @@ class AdminItemForm extends Component {
 			Description: this.state.description,
 			MoreInformation: this.state.moreinformation,
 			Quanity: this.state.avaliablequantity,
-			ProductImages: this.state.imagesToSave
+			ProductImages: this.state.imagesToSave,
+			IsHomeProduct: this.state.ishomeproduct,
 		}
 		this.props.UpdateProduct(this.props.match.params.id, product)
+		.then(()=>{
+			this.props.history.push(`/admin`)
+		})
 	}
 	deleteProduct(){
 		debugger
 		axios.delete(`/api/products/delete/${this.props.match.params.id}`)
 			.then(()=>{
+				debugger
 				this.props.history.push('/admin');
 			})
 	}
@@ -67,7 +75,11 @@ class AdminItemForm extends Component {
 			})
 		}
 	}
-	
+	changeIsHomeProduct(bool){
+		this.setState({
+			ishomeproduct:bool,
+		})
+	}
 
 	render() {
 	let button;
@@ -78,7 +90,7 @@ class AdminItemForm extends Component {
 		return (
 			<div className="details-main-container">
 				<div className="detail-flex-container image-price-container">
-					<FilePicker productId={this.props.details.details.productid} saveImageNames={this.saveImageNames}/>: 
+					<FilePicker productId={this.props.details.details.productid} saveImageNames={this.saveImageNames}/> 
 
 					<div className = "detail-details">
 						<input placeholder="Title..." name="name" onChange={this.changeInput} className="input Yellow-Text name" value={this.state.name} />
@@ -87,6 +99,8 @@ class AdminItemForm extends Component {
 						<textarea placeholder="Description..." name="description" onChange={this.changeInput} className="textarea Normal-Text description" value={this.state.description}/>
 					</div>
 				</div>
+
+
 				<div className = "additional-details-container">
 					<p className="Yellow-Text more-information">MORE INFORMATION</p>
 					<textarea placeholder="More Information..." name="moreinformation" onChange={this.changeInput} className="textarea Normal-Text description" value={this.state.moreinformation}/>
@@ -96,12 +110,16 @@ class AdminItemForm extends Component {
 						<p>Avaliable Quanity:</p>
 						<input type="number" className="quanity-input" name="avaliablequantity" onChange={this.changeInput}  value={this.state.avaliablequantity}/>
 					</div>
-					<div className="admin-button-container">
-					<button className="addToCartButton biggerButton" onClick={this.updateProduct}>Save</button>
-					{button}
+					<div className="ishomeproduct-container">
+						<label>Feature This Product On Home Page?</label>
+						<br/>
+						<YesNo changeYesNo={this.changeIsHomeProduct} yesno={this.state.ishomeproduct}/>
 					</div>
-				
-					
+					<div className="admin-button-container">
+						<button className="addToCartButton biggerButton" onClick={this.updateProduct}>Save</button>
+						{button}
+					</div>
+
 				</div>
 			</div>
 		);

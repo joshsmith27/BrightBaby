@@ -53,8 +53,8 @@ module.exports = {
 	},
 
     postProduct: ( req, res, next ) => {
-        let {Name, Price, Description, MoreInformation, Quanity, ProductImages} = req.body;
-		let data = [Name, Price, Description, MoreInformation, Quanity];
+        let {Name, Price, Description, MoreInformation, Quanity, ProductImages, IsHomeProduct} = req.body;
+		let data = [Name, Price, Description, MoreInformation, Quanity, IsHomeProduct];
 		const dbInstance = dbGetter(req);
 		if(req.params.id < 1){
 			dbInstance.ProductStoreProcedures.create_product(data)
@@ -63,7 +63,7 @@ module.exports = {
 				return dbInstance.ProductStoreProcedures.get_newest_product()})
 			.then(product => {
 				ProductImages.map((image)=>{
-					dbInstance.ProductStoreProcedures.add_image([product[0].productid, image.imagepath])})
+					dbInstance.ProductStoreProcedures.add_image([product[0].productid, image.imagepath, image.isdefault])})
 				})
 			.then(product => {
 				return getProducts('0', req)
@@ -76,8 +76,8 @@ module.exports = {
 				res.status(500).send(err);
 			});
 		}else{
-			let {Name, Price, Description, MoreInformation, Quanity, ProductImages} = req.body;
-			let data = [req.params.id, Name, Price, Description, MoreInformation, Quanity];
+			let {Name, Price, Description, MoreInformation, Quanity, ProductImages, IsHomeProduct} = req.body;
+			let data = [req.params.id, Name, Price, Description, MoreInformation, Quanity, IsHomeProduct];
 			let productInfo ={}
             dbInstance.ProductStoreProcedures.update_product(data)
 			.then(product => { 
@@ -93,9 +93,9 @@ module.exports = {
 					})
 					ProductImages.forEach((image)=>{
 						if(imageIds.includes(image.imageid)){
-							dbInstance.ProductStoreProcedures.update_image([image.productid, image.imageid, image.imagepath])
+							dbInstance.ProductStoreProcedures.update_image([image.productid, image.imageid, image.imagepath, image.isdefault])
 						}else if(images.length < 3){
-							dbInstance.ProductStoreProcedures.add_image([productInfo.productid, image.imagepath])
+							dbInstance.ProductStoreProcedures.add_image([productInfo.productid, image.imagepath, image.isdefault])
 						}
 					})
 				}
@@ -138,8 +138,11 @@ module.exports = {
 		res.send(data)
 	  },
 
-	  getHomeProduct:(req, res)=>{
+	  getHomeProducts:(req, res)=>{
 		const dbInstance = dbGetter(req);
-		
+		dbInstance.product.find({ishomeproduct: true})
+			.then((homeProducts)=>{
+				res.send(homeProducts);
+			})
 	  }
 }

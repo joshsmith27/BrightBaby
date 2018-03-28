@@ -24,7 +24,7 @@ app.use( bodyParser.json() );
 
 
 app.get('/api/products/getproducts', productsEndpoints.getProducts);
-app.get('/api/getHomeProducts', productsEndpoints.getHomeProducts);
+app.get('/api/gethomeproducts', productsEndpoints.getHomeProducts);
 app.get(`/api/products/getDetails/:id`, productsEndpoints.getDetails);
 app.get(`/api/products/getImages/:id`, productsEndpoints.getImages);
 
