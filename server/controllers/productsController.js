@@ -95,7 +95,7 @@ module.exports = {
 						if(imageIds.includes(image.imageid)){
 							dbInstance.ProductStoreProcedures.update_image([image.productid, image.imageid, image.imagepath, image.isdefault])
 						}else if(images.length < 3){
-							dbInstance.ProductStoreProcedures.add_image([productInfo.productid, image.imagepath, image.isdefault])
+							dbInstance.productimages.insert({productid: productInfo.productid, imagepath: image.imagepath, is_default:image.isdefault})
 						}
 					})
 				}
