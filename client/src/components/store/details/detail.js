@@ -34,7 +34,13 @@ class Details extends Component {
 	render() {
 		if(this.props.details.details.name){
 			let {name, price, description, moreinformation, productid, avaliableQuanity} = this.props.details.details
-			let image = `/uploads/${this.props.details.details.productImages[0].imagepath}`
+			let defaultimage  = this.props.details.details.productImages.filter((image)=>{
+				if(image.is_default){
+					return image
+				}
+				
+			})[0]
+			let image = `/uploads/${defaultimage.imagepath}`
 			return (
 				<div className="details-main-container">
 					<div className="detail-flex-container">

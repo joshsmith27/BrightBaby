@@ -24,9 +24,15 @@ class Store extends Component {
 		var propType = typeof this.props.products;
 		if(this.props.products.length > 0 && propType !== 'string' ){
 			Items = this.props.products[0].map((e)=>{
+				let defaultimage = defaultimage = e.productImages.filter((image)=>{
+						if(image.is_default){
+							return image
+						}
+						
+					})[0]
 				return <Item
 				key={e.productid}
-				productImage={e.productImages.length > 0 ? `/uploads/${e.productImages[0].imagepath}` : ""}
+				productImage={e.productImages.length > 0 ? `/uploads/${defaultimage.imagepath}` : ""}
 				title={e.name}
 				price={e.price}
 				productId = {e.productid}
