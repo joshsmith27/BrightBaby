@@ -32,7 +32,6 @@ class Details extends Component {
 	}
 
 	render() {
-		/// TODO remove this if check and test
 		if(this.props.details.details.name){
 			let {name, price, description, moreinformation, productid, avaliableQuanity} = this.props.details.details
 			let defaultimage  = this.props.details.details.productImages.filter((image)=>{

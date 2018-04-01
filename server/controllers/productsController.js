@@ -140,9 +140,27 @@ module.exports = {
 
 	  getHomeProducts:(req, res)=>{
 		const dbInstance = dbGetter(req);
+		/// Gets home page products
 		dbInstance.product.find({ishomeproduct: true})
 			.then((homeProducts)=>{
-				res.send(homeProducts);
+				/// Gets images for the products.
+				const images = homeProducts.map((product)=>{
+					return dbInstance.productimages.find({productid:product.productid})
+				})
+				Promise.all(images)
+				.then((images)=>{
+					// Maps through homeproducts and assigns the 
+					// corresponding image array to the home product. 
+					const data = homeProducts.map((product)=>{
+						product.images = images.filter((image)=>{
+							if(image[0].productid == product.productid){
+								return image
+							}
+						})[0];
+						return product;
+					})
+					res.send(data);
+				})
 			})
 	  }
 }
