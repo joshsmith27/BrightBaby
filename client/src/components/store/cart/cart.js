@@ -15,16 +15,21 @@ class Cart extends Component {
 		if(this.props.cart.products && typeof this.props.cart.products !== 'string' ){
       console.log(this.props)
 			CartItems = this.props.cart.products.map((e, i)=>{
+        let image  = e.productImages.filter((image)=>{
+          if(image.is_default){
+              return image
+          }
+        })[0]
 				return <CartItem
-        key={e.productid}
-        productName={e.name}
-        productImage={e.productImages.length > 0 ? `/uploads/${e.productImages[0].imagepath}` : ""}
-        productQuanity={e.quanity}
-        productPrice={e.price}
-        productId = {e.productid}
-        RemoveCartItem = {this.props.RemoveCartItem}
-        UpdateCartItem = {this.props.UpdateCartItem}
-        avaliablequantity={e.avaliablequantity}
+          key={e.productid}
+          productName={e.name}
+          productImage={e.productImages.length > 0 ? `/uploads/${image.imagepath}` : ""}
+          productQuanity={e.quanity}
+          productPrice={e.price}
+          productId = {e.productid}
+          RemoveCartItem = {this.props.RemoveCartItem}
+          UpdateCartItem = {this.props.UpdateCartItem}
+          avaliablequantity={e.avaliablequantity}
         />
 		});
 		

@@ -28,9 +28,14 @@ class Admin extends Component {
     var propType = typeof this.props.products;
 		if(this.props.products.length > 0 && propType !== 'string' ){
 			NewItemForms = this.props.products[0].map((e)=>{
+        let image  = e.productImages.filter((image)=>{
+          if(image.is_default){
+              return image
+          }
+        })[0]
 				return <NewItemForm
 				key={e.productid}
-				productImage={e.productImages.length > 0 ? `/uploads/${e.productImages[0].imagepath}` : ""}
+				productImage={e.productImages.length > 0 ? `/uploads/${image.imagepath}` : ""}
 				productName={e.name}
 				productQuanity={e.productQuanity}
 				productId = {e.productid}

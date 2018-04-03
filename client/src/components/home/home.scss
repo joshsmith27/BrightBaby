@@ -1,24 +1,29 @@
-#hexagon{
-  width:100px;
+#hexagon {
+  width: 100px;
   height: 100px;
 }
-.odd{
-    margin-left: 93px;
-    margin-top: -45px;
-    margin-bottom: -18px;
+
+.odd {
+  margin-left: 93px;
+  margin-top: -45px;
+  margin-bottom: -18px;
 }
+
 .odd2 {
-    margin-left: 277px;
-    margin-top: -40px;
+  margin-left: 277px;
+  margin-top: -40px;
 }
+
 .odd1 {
-    margin-left: 186px;
-    margin-top: -45px;
+  margin-left: 186px;
+  margin-top: -45px;
 }
-.Home-Container{
+
+.Home-Container {
   width: 62%;
   margin: auto;
 }
+
 .hexa {
   height: 200px;
   margin-left: 10px;
@@ -29,5 +34,29 @@
   image {
     height: 105%;
     width: 116%;
+  }
+}
+
+.product-banner {
+  height: 300px;
+  width: 60%;
+  margin: auto;
+  min-width: 300px;
+  background-size: cover;
+  border: solid 4px black;
+  background-position: center;
+  .text-home-product-container {
+    color: $Secondary-Color;
+    font-size: 20px;
+    /* text-align: right; */
+    padding: 20px 30px;
+    a {
+      text-decoration: underline;
+      color: $Secondary-Color;
+      font-size: 20px;
+    }
+    h1 {
+      margin: 0px;
+    }
   }
 }

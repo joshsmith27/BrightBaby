@@ -1,54 +1,50 @@
-.cart-main-container{
+.cart-main-container {
     width: 90%;
     margin: auto;
     margin-bottom: 40px;
-
-    .cart-header{
+    .cart-header {
         margin: 100px AUTO;
         text-align: center;
         font-size: 30px;
         font-weight: bolder;
     }
-    .remove-edit-container{
+    .remove-edit-container {
         display: flex;
     }
-    .product-name-cart{
+    .product-name-cart {
         margin-top: 35px;
         font-size: 18px;
         font-weight: bold;
     }
-
-    .cart-image{
+    .cart-image {
         border: 1px solid;
         background-position: center;
-        background-size: contain;
+        background-size: cover;
         background-repeat: no-repeat;
         width: 100%;
         max-width: 150px;
-        height: 150px; 
+        height: 150px;
     }
     .image-quanity-container {
         display: flex;
         margin-top: 5px;
-        .quanity-input{
+        .quanity-input {
             margin-left: 1px;
             width: 30%;
             padding-left: 4px;
             color: $Gray;
             font-family: $Primary-font;
         }
-        .quanityText{
+        .quanityText {
             position: relative;
             margin-top: 86px;
             margin-left: 10px;
-
         }
-        p:first-child{
+        p:first-child {
             margin-bottom: 4px;
         }
-
     }
-    footer{
+    footer {
         width: 100%;
         display: flex;
         position: fixed;

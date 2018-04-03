@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import {GetDetails, AddToCart} from '../../../Redux/actions/action';
 import Loading from '../../loading';
-
+import ImageSelector from './ImageSelector';
 
 class Details extends Component {
 	constructor(props){
@@ -34,17 +34,10 @@ class Details extends Component {
 	render() {
 		if(this.props.details.details.name){
 			let {name, price, description, moreinformation, productid, avaliableQuanity} = this.props.details.details
-			let defaultimage  = this.props.details.details.productImages.filter((image)=>{
-				if(image.is_default){
-					return image
-				}
-				
-			})[0]
-			let image = `/uploads/${defaultimage.imagepath}`
 			return (
 				<div className="details-main-container">
 					<div className="detail-flex-container">
-						<div className = "detail-image" style={{backgroundImage: 'url(' + image + ')'}}></div>
+						<ImageSelector images={this.props.details.details.productImages}/>
 						<div className = "detail-details">
 							<p className="Yellow-Text name">{name.toUpperCase()}</p>
 							<p className="purple-Text price">{`$${Number(price).toFixed(2)}`}</p>

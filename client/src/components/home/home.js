@@ -26,7 +26,6 @@ class Home extends Component {
 		const productCards = this.state.products.map((product)=>{
 			let defaultImage = '';
 			  product.images.forEach((image)=>{
-				debugger
 				if(image.is_default){
 					 defaultImage = image.imagepath;
 				}
@@ -34,10 +33,16 @@ class Home extends Component {
 			console.log(defaultImage);
 			return(
 				<div className="product-banner" style={{ backgroundImage: 'url(' + `/uploads/${defaultImage}` + ')'}}>
-					<h1>{product.name}</h1>
-					<Link className="shop-now" to={`/store`}>
-						Shop Now
-					</Link>
+					<div className="text-home-product-container">
+						<h1>{product.name}</h1>
+						<div className="link-container">
+							<Link className="shop-now" to={`/store`}>
+								Shop Now
+							</Link>
+						</div>
+
+					</div>
+
 				</div>
 			)
 		})

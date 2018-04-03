@@ -1,31 +1,27 @@
-.details-main-container{
-    width:85%;
+.details-main-container {
+    width: 85%;
     margin: auto;
     margin-top: 150px;
-
-    p{
+    p {
         margin: 0;
     }
     .detail-details {
         width: 45%;
         min-width: 250px;
     }
-    
     .detail-flex-container {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
     }
-    
     .detail-image {
-        height:  250px;
-        width: 50%;
+        height: 400px;
+        width: 400px;
         min-width: 230px;
         background-position: center;
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: cover;
     }
-    
     .name {
         font-size: 25px;
     }
@@ -35,42 +31,56 @@
         width: 46%;
         max-width: 108px;
     }
-
     .display-flex {
         width: 34%;
         margin-left: 10px;
         margin-top: 4px;
     }
-
     input.quanity-input {
         height: 50%;
         width: 29%;
         margin-left: 4px;
     }
-
     .button-quanity-container {
         margin-top: 21px;
         display: flex;
     }
-
     .additional-details-container {
-        width: 92%;
+        width: 100%;
         margin: auto;
         margin-top: 80px;
         margin-bottom: 80px;
     }
-
-    .price{
+    .price {
         font-size: 20px;
         margin-bottom: 15px;
         margin-top: 1px;
         font-weight: bold;
     }
-    .description{
+    .description {
         text-align: justify;
-        width: 90%;   
+        width: 90%;
     }
-    .more-information{
+    .more-information {
         margin-bottom: 15px;
+    }
+}
+
+.image-selector-container {
+    display: flex;
+    .images {
+        margin-top: 145px;
+    }
+    .image {
+        box-sizing: border-box;
+        height: 75px;
+        width: 75px;
+        background-size: cover;
+        background-position: center;
+        margin: 10px 10px;
+        margin-bottom: 0px;
+    }
+    .image:hover {
+        cursor: pointer;
     }
 }
