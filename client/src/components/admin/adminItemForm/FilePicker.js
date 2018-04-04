@@ -123,6 +123,7 @@ class FilePicker extends Component {
   }
 
   saveImages(event) {
+    //Todo check is_default and make sure it saves.
     event.preventDefault();
     let formData = new FormData();
     this.state.saveImages.map((image, i)=>{
