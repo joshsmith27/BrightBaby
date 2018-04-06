@@ -135,7 +135,11 @@ class FilePicker extends Component {
       }
     })
       .then((response)=>{
+          debugger
           const rtn = this.state.saveImages.map((image, i)=>{
+            if(!image.isdefault){
+              image.isdefault = false;
+            }
             image.imagepath = response.data[i]
             delete image.file;
             return image;
