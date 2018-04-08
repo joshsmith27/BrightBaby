@@ -25,6 +25,10 @@ textarea {
   border: none;
   font-family: Quicksand; }
 
+.title {
+  font-size: 30px;
+  margin-bottom: 10px; }
+
 .textarea {
   border: none;
   font-size: 14px;
@@ -423,6 +427,23 @@ button[disabled] {
       margin-left: 10px; }
     .admin-main-container .image-quanity-container p:first-child {
       margin-bottom: 4px; }
+
+.loginForm {
+  display: block;
+  width: 22%;
+  margin: 100px auto;
+  text-align: center;
+  border: solid 1px grey;
+  border-radius: 4px;
+  padding: 60px 20px;
+  padding-top: 40px; }
+  .loginForm input {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 20px; }
+  .loginForm button {
+    font-size: 20px;
+    padding: 5px 30px; }
 
 .saveQuanity-container {
   width: 50%;

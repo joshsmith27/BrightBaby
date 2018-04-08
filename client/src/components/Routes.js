@@ -6,4 +6,5 @@ import Cart from'./store/cart/cart';
 import Admin from './admin/admin';
 import AdminItemForm from './admin/adminItemForm/adminItemForm';
 import Nav from './Nav/Nav';
-export {ScrollToTop, Home, Store, Details, Cart, Admin, AdminItemForm, Nav};
+import AdminLogin from './admin/adminLogin';
+export {ScrollToTop, Home, Store, Details, Cart, Admin, AdminItemForm, Nav, AdminLogin};

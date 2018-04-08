@@ -3,20 +3,13 @@ import Logo from '../Media/SpruceBaby.svg';
 import ShoppingBag from '../Media/ShoppingBag.svg'
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {ScrollToTop,Home, Store, Details, Cart, Admin, AdminItemForm, Nav} from './Routes';
+import {ScrollToTop,Home, Store, Details, Cart, Admin, AdminItemForm, Nav, AdminLogin} from './Routes';
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isAdmin: true
-		};
-	}
-
 	render() {
 		const backgroundLogo = {backgroundImage: 'url(' + Logo + ')'};
-		const admin = this.state.isAdmin ? (<Route path="/admin" component={Admin}/>): null;
-		const adminDetails = this.state.isAdmin ? (<Route path="/admin/:id" component={AdminItemForm}/>): null;
+		const admin = this.props.isAdmin ? (<Route path="/admin" component={Admin}/>): null;
+		const adminDetails = this.props.isAdmin ? (<Route path="/admin/:id" component={AdminItemForm}/>): null;
 		return (
 			<div className="App">
 				<Router>
@@ -33,11 +26,12 @@ class App extends Component {
 							<Link to={'/'}>
 								<div className="logo-container" style={backgroundLogo}/>
 							</Link>
-							<Nav isAdmin={this.state.isAdmin}/>
+							<Nav isAdmin={this.props.isAdmin}/>
 							<Switch>
 								<Route path="/details/:id" component={Details}/>
 								<Route path="/store" component={Store}/>
 								<Route path="/cart" component={Cart}/> 
+								<Route path="/adminLogin" component={AdminLogin}/> 
 								{adminDetails}
 								{admin}
 								<Route path="/" component={Home}/>
@@ -49,7 +43,4 @@ class App extends Component {
 	}
 }
 
-function mapStateToProps({cart}) {
-				return {cart};
-}
-export default connect(mapStateToProps)(App);
+export default connect(state => state)(App);
