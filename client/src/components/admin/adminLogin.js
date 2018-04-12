@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as Actions from '../../Redux/actions/action';
-
 class AdminLogin extends Component {
     constructor(props){
         super(props);
@@ -10,23 +9,29 @@ class AdminLogin extends Component {
             email: '',
             password: '',
             showError: false,
+            IsLogingIn: false
         }
         this.login = this.login.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
     login(event){
         event.preventDefault();
+        this.setState({
+            IsLogingIn: true
+        })
         const data = {
             email: this.state.email,
             password: this.state.password
         }
         axios.post('/api/admin/login', data)
             .then((response)=>{
-                if(response.successful){
+                if(response.data.successful){   
+                    this.props.ChangeAdmin(response.data.successful);
                     this.props.history.push('/admin')
                 }else{
                     this.setState({
                         showError: true,
+                        IsLogingIn: false
                     })
                 }
             })
@@ -46,6 +51,7 @@ class AdminLogin extends Component {
                 Your Email and Password combination wasn't found. 
             </div>
         }
+        let IsLoading = this.state.IsLogingIn ? <div class="loader"></div>: <button>Login</button>
         return(
             <div>
                 <form className="loginForm" onSubmit={this.login}>
@@ -55,7 +61,7 @@ class AdminLogin extends Component {
                     <br/>
                     <input type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password"/>
                     <br/>
-                    <button className="">Login</button>
+                    {IsLoading}
                 </form>
             </div>
         )

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-
+import * as Action from '../../Redux/actions/action.js'
+import {connect} from 'react-redux';
 class Nav extends Component{
     render(){
-        if(this.props.isAdmin){
+        if(this.props.IsAdmin){
             return(
                 <nav className='nav-container'>
                     <Link  to={'/'}>Home</Link>
@@ -24,4 +25,4 @@ class Nav extends Component{
     }
 }
 
-export default Nav
+export default connect(state => state)(Nav);

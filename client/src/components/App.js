@@ -8,8 +8,8 @@ import {ScrollToTop,Home, Store, Details, Cart, Admin, AdminItemForm, Nav, Admin
 class App extends Component {
 	render() {
 		const backgroundLogo = {backgroundImage: 'url(' + Logo + ')'};
-		const admin = this.props.isAdmin ? (<Route path="/admin" component={Admin}/>): null;
-		const adminDetails = this.props.isAdmin ? (<Route path="/admin/:id" component={AdminItemForm}/>): null;
+		const admin = this.props.IsAdmin ? (<Route path="/admin" component={Admin}/>): (<Route path="/admin" component={AdminLogin}/>);
+		const adminDetails = this.props.IsAdmin ? (<Route path="/admin/:id" component={AdminItemForm}/>): <Route path="/admin/:id"  component={AdminLogin}/>;
 		return (
 			<div className="App">
 				<Router>
@@ -26,7 +26,7 @@ class App extends Component {
 							<Link to={'/'}>
 								<div className="logo-container" style={backgroundLogo}/>
 							</Link>
-							<Nav isAdmin={this.props.isAdmin}/>
+							<Nav/>
 							<Switch>
 								<Route path="/details/:id" component={Details}/>
 								<Route path="/store" component={Store}/>
