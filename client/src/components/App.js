@@ -3,9 +3,18 @@ import Logo from '../Media/SpruceBaby.svg';
 import ShoppingBag from '../Media/ShoppingBag.svg'
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import * as Actions from '../Redux/actions/action';
+import Alert from'./alert/alert';
 import {ScrollToTop,Home, Store, Details, Cart, Admin, AdminItemForm, Nav, AdminLogin} from './Routes';
+import axios from 'axios';
 
 class App extends Component {
+	componentDidMount(){
+		axios.get('/api/userAdmin')
+			.then((response)=>{
+				this.props.ChangeAdmin(response.data.successful);
+			})
+	}
 	render() {
 		const backgroundLogo = {backgroundImage: 'url(' + Logo + ')'};
 		const admin = this.props.IsAdmin ? (<Route path="/admin" component={Admin}/>): (<Route path="/admin" component={AdminLogin}/>);
@@ -38,9 +47,10 @@ class App extends Component {
 							</Switch>
 					</ScrollToTop>
 				</Router>
+				<Alert/>
 			</div>
 		);
 	}
 }
 
-export default connect(state => state)(App);
+export default connect(state => state, Actions)(App);

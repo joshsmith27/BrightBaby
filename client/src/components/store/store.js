@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators} from 'redux';
-import {GetProducts, AddToCart} from '../../Redux/actions/action';
+import * as Actions from '../../Redux/actions/action';
 import Loader from '../loading';
 import Item from './item/item';
+
 class Store extends Component {
 	constructor(){
 		super()
@@ -18,6 +18,10 @@ class Store extends Component {
 				isLoaded: true,
 			});
 		})
+	}
+	handleAddToCart(product){
+		this.props.AddToCart(product, 1)
+		this.props.Alert({show:true, alertText:`Added To Cart`})
 	}
 	render() {
 		let Items = [];
@@ -37,7 +41,7 @@ class Store extends Component {
 				price={e.price}
 				productId = {e.productid}
 				product={e}
-				AddToCart={this.props.AddToCart}
+				AddToCart={()=>{this.handleAddToCart(e)}}
 			></Item>
 		});
 		
@@ -45,11 +49,12 @@ class Store extends Component {
 		if (this.state.isLoaded){
 			return (
 				<div className ="store-main-container">
-				<p className="Yellow-Text store-header">STORE</p>
-				<div className="store-inner-container">
-				{Items}
+					<p className="Yellow-Text store-header">STORE</p>
+					<div className="store-inner-container">
+						{Items}
+					</div>
 				</div>
-				</div>
+				
 			);
 		}else {
 			return(
@@ -59,12 +64,6 @@ class Store extends Component {
 		}
 	}
 }
-function mapStateToProps({products}){
-	return {products};
-}
-function mapDispatchToProps(dispatch){
-	return bindActionCreators({GetProducts, AddToCart}, dispatch);
-}
   
-export default connect(mapStateToProps, mapDispatchToProps)(Store);
+export default connect(state => state, Actions)(Store);
 

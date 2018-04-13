@@ -30,9 +30,8 @@ class Home extends Component {
 					 defaultImage = image.imagepath;
 				}
 			  });
-			console.log(defaultImage);
 			return(
-				<div className="product-banner" style={{ backgroundImage: 'url(' + `/uploads/${defaultImage}` + ')'}}>
+				<div key={product.productid} className="product-banner" style={{ backgroundImage: 'url(' + `/uploads/${defaultImage}` + ')'}}>
 					<div className="text-home-product-container">
 						<h1>{product.name}</h1>
 						<div className="link-container">

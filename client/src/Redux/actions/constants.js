@@ -6,4 +6,4 @@ export const POST_PRODUCT = 'POST_PRODUCT';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const IS_ADMIN  = 'IS_ADMIN';
-
+export const ALERT = 'ALERT'

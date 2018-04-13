@@ -32,7 +32,7 @@ textarea {
 .loader {
   border: 5px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 5px solid #178E16;
+  border-top: 5px solid #178e16;
   width: 30px;
   height: 30px;
   margin: auto;
@@ -65,7 +65,7 @@ textarea {
 
 button {
   border-radius: 4px;
-  background: #178E16;
+  background: #178e16;
   color: white;
   border: none;
   font-size: 10px; }
@@ -80,7 +80,7 @@ button[disabled] {
   color: #666666; }
 
 .Yellow-Text {
-  color: #178E16;
+  color: #178e16;
   font-weight: bold; }
 
 .Purple-Text {
@@ -211,7 +211,7 @@ button[disabled] {
     height: 100px;
     background: transparent;
     justify-content: flex-end;
-    bottom: -63px;
+    bottom: -47px;
     left: -49px; }
 
 .store-main-container {
@@ -381,7 +381,6 @@ button[disabled] {
   margin: auto;
   min-width: 300px;
   background-size: cover;
-  border: solid 4px black;
   background-position: center; }
   .product-banner .text-home-product-container {
     color: #000000;
@@ -538,5 +537,29 @@ button[disabled] {
 
 .adminSmallForm {
   width: 50%; }
+
+.alertContainer {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  padding-top: 300px;
+  text-align: center; }
+  .alertContainer .alert {
+    width: 20%;
+    min-width: 300px;
+    margin: auto;
+    background: rgba(23, 142, 22, 0.9);
+    padding: 70px 20px;
+    border-radius: 4px;
+    color: white;
+    font-size: 20px;
+    position: relative; }
+    .alertContainer .alert p {
+      position: absolute;
+      top: 5px;
+      right: 13px; }
+    .alertContainer .alert p:hover {
+      cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */

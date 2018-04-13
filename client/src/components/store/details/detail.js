@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import {GetDetails, AddToCart} from '../../../Redux/actions/action';
+import * as Actions from '../../../Redux/actions/action';
 import Loading from '../../loading';
 import ImageSelector from './ImageSelector';
 
@@ -31,6 +31,11 @@ class Details extends Component {
 		this.props.GetDetails(id);
 	}
 
+	handleAddToCart(product, quanity){
+		this.props.AddToCart(product, quanity)
+		this.props.Alert({show:true, alertText:`Added To Cart`})
+	}
+
 	render() {
 		if(this.props.details.details.name){
 			let {name, price, description, moreinformation, productid, avaliableQuanity} = this.props.details.details
@@ -43,7 +48,7 @@ class Details extends Component {
 							<p className="purple-Text price">{`$${Number(price).toFixed(2)}`}</p>
 							<p className="normal-Text description">{description}</p>
 							<div className="button-quanity-container">
-								<button className="addToCartButton biggerButton" onClick={() => this.props.AddToCart(this.props.details.details, this.state.productQuanity)}>Add To Cart</button>
+								<button className="addToCartButton biggerButton" onClick={() => this.handleAddToCart(this.props.details.details, this.state.productQuanity)}>Add To Cart</button>
 								<div className="display-flex">
 									<p>Qty:</p>
 									<input onChange={this.changeInput} type="number" min="1" className="quanity-input" value={this.state.productQuanity}/>
@@ -63,12 +68,6 @@ class Details extends Component {
 
 	}
 }
-function mapStateToProps({details}){
-	return {details};
-}
-function mapDispatchToProps(dispatch){
-	return bindActionCreators({GetDetails, AddToCart}, dispatch);
-}
   
-export default connect(mapStateToProps, mapDispatchToProps)(Details);
+export default connect(state => state, Actions)(Details);
 

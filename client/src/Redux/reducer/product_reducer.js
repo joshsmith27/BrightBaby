@@ -1,4 +1,4 @@
-import {GET_DETAILS, GET_PRODUCTS, GET_USERINFO} from './../actions/constants';
+import {GET_DETAILS, GET_PRODUCTS, GET_USERINFO, ALERT} from './../actions/constants';
 
 export function details (state = {
 		details:{
@@ -39,6 +39,15 @@ export function products (state = [], action){
 			return action.payload.message;
 	    default:
 		    return state;
+	}
+}
+
+export const alert = ( state = {show:false, alertText:''}, action) => {
+	switch(action.type){
+		case ALERT : 
+		return action.payload;
+		default:
+		return state
 	}
 }
 

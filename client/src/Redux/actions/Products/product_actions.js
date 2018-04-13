@@ -1,4 +1,4 @@
-import {GET_DETAILS, GET_PRODUCTS, POST_PRODUCT} from '../constants';
+import {GET_DETAILS, GET_PRODUCTS, POST_PRODUCT, ALERT} from '../constants';
 import axios from 'axios';
 const baseUrl = '/api/products';
 
@@ -23,5 +23,12 @@ export function Post_Update_Products(id, updates){
 	return {
 		type: POST_PRODUCT,
 		payload: request,
+	}
+}
+
+export const Alert_Action = (payload)=>{
+	return {
+		type: ALERT,
+		payload
 	}
 }

@@ -15,6 +15,7 @@ const authenticate = require('./controllers/AuthenticationController.js');
 
 const app = express();
 
+
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -77,6 +78,7 @@ app.get('/api/products/getproducts', productsEndpoints.getProducts);
 app.get('/api/gethomeproducts', productsEndpoints.getHomeProducts);
 app.get(`/api/products/getDetails/:id`, productsEndpoints.getDetails);
 app.get(`/api/products/getImages/:id`, productsEndpoints.getImages);
+app.get(`/api/userAdmin`, authenticate.login)
 
 app.post('/api/products/postproducts/:id', productsEndpoints.postProduct);
 app.post('/api/product/add/images', upload.array('photos', 3), productsEndpoints.uploadImages);

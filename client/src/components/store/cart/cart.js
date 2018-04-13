@@ -43,7 +43,10 @@ class Cart extends Component {
         <footer>
           <div>
             <p className="Normal-Text">Total: <span className="Purple-Text">{`$${Number(this.props.cart.subTotal).toFixed(2)}`}</span> </p>
+            <br/>
+            <button className="checkoutButton">Check Out</button>
           </div>
+          
         </footer>
       </div>
     );

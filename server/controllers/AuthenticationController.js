@@ -6,4 +6,8 @@ module.exports = {
             user: req.user,
         });
     },
+    IsLogedIn: (req,res)=>{
+        res.send({successful: req.isAuthenticated()
+        })
+    }
 }

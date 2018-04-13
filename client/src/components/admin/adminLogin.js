@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as Actions from '../../Redux/actions/action';
+import Loader from '../loading';
+
 class AdminLogin extends Component {
     constructor(props){
         super(props);
@@ -52,19 +54,26 @@ class AdminLogin extends Component {
             </div>
         }
         let IsLoading = this.state.IsLogingIn ? <div class="loader"></div>: <button>Login</button>
-        return(
-            <div>
-                <form className="loginForm" onSubmit={this.login}>
-                    <div className="title">Login</div>
-                    {error}
-                    <input type="text" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Email"/>
-                    <br/>
-                    <input type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password"/>
-                    <br/>
-                    {IsLoading}
-                </form>
-            </div>
-        )
+        if(this.props.IsAdmin === null){
+            return (
+                <Loader/>
+            )
+        }else{
+            return(
+                <div>
+                    <form className="loginForm" onSubmit={this.login}>
+                        <div className="title">Login</div>
+                        {error}
+                        <input type="text" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Email"/>
+                        <br/>
+                        <input type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password"/>
+                        <br/>
+                        {IsLoading}
+                    </form>
+                </div>
+            )
+        }
+
     }
 }
 
