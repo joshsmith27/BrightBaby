@@ -7,7 +7,14 @@ module.exports = {
         });
     },
     IsLogedIn: (req,res)=>{
+        console.log(req.isAuthenticated());
         res.send({successful: req.isAuthenticated()
+        })
+    },
+    logout: (req, res) => {
+
+        req.session.destroy(()=>{
+            res.send({successful: true, loggedIn: false})
         })
     }
 }

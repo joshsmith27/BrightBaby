@@ -53,7 +53,7 @@ class AdminLogin extends Component {
                 Your Email and Password combination wasn't found. 
             </div>
         }
-        let IsLoading = this.state.IsLogingIn ? <div class="loader"></div>: <button>Login</button>
+        let IsLoading = this.state.IsLogingIn ? <div className="loader"></div>: <button>Login</button>
         if(this.props.IsAdmin === null){
             return (
                 <Loader/>

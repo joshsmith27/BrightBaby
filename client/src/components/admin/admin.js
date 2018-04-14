@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators} from 'redux';
-import {GetProducts} from '../../Redux/actions/action';
+import * as Actions from '../../Redux/actions/action';
 import NewItemForm from './adminItem';
 import { Link } from 'react-router-dom';
 import Loader from '../loading'
 import DefaultImage from '../../Media/addImage2.png';
-
+import axios from 'axios';
 class Admin extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       isLoaded: false,
     }
+    this.logOut = this.logOut.bind(this);
   }
 	componentWillMount(){
     this.props.GetProducts()
@@ -22,7 +22,13 @@ class Admin extends Component {
       })
     })
 	}
-
+logOut(){
+  axios.get(`/api/userAdmin/logout`)
+  .then(()=>{
+    debugger
+    this.props.ChangeAdmin(false);
+  })
+}
   render() {
     let NewItemForms;
     var propType = typeof this.props.products;
@@ -55,6 +61,7 @@ class Admin extends Component {
       return (
         <div className="admin-main-container">
           <p className="Yellow-Text admin-header">Admin</p>
+          <p className="Grey-Text admin-subTitle" onClick={this.logOut}>logout</p>
           <p className="Grey-Text admin-subTitle">Choose an item to edit or add a new item.</p>
           <div className="display-flex adminItemContainer">
           {NewItemForms}
@@ -67,11 +74,5 @@ class Admin extends Component {
   }
 }
 
-function mapStateToProps({products}){
-	return {products};
-}
-function mapDispatchToProps(dispatch){
-	return bindActionCreators({GetProducts}, dispatch);
-}
   
-export default connect(mapStateToProps, mapDispatchToProps)(Admin)
+export default connect(state => state, Actions)(Admin)

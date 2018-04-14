@@ -31,7 +31,7 @@ app.use(session({
                                         // apowienpafosdihvpoaiwnpeiruhpasokmv287394erijf => {userId: 1}
     cookie: {
         //days hours minutes seconds milseconds
-        expires:  5 * 24 * 60 * 60 *1000,
+        expires: 1 * 24 * 60 * 10 * 1000,
     },
     saveUninitialized: false,
     rolling: true,
@@ -78,7 +78,8 @@ app.get('/api/products/getproducts', productsEndpoints.getProducts);
 app.get('/api/gethomeproducts', productsEndpoints.getHomeProducts);
 app.get(`/api/products/getDetails/:id`, productsEndpoints.getDetails);
 app.get(`/api/products/getImages/:id`, productsEndpoints.getImages);
-app.get(`/api/userAdmin`, authenticate.login)
+app.get(`/api/userAdmin`, authenticate.IsLogedIn)
+app.get(`/api/userAdmin/logout`, authenticate.logout)
 
 app.post('/api/products/postproducts/:id', productsEndpoints.postProduct);
 app.post('/api/product/add/images', upload.array('photos', 3), productsEndpoints.uploadImages);

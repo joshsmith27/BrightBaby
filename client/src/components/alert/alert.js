@@ -7,7 +7,6 @@ import * as Actions from '../../Redux/actions/action'
         this.props.Alert({show:false, alertText: ''})
     }
     render(){
-        debugger
         const displayStyle = {display: this.props.alert.show ? 'block' : 'none'};
         return(
             <div  style={displayStyle} className="alertContainer">
