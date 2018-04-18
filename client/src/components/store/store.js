@@ -21,7 +21,7 @@ class Store extends Component {
 	}
 	handleAddToCart(product){
 		this.props.AddToCart(product, 1)
-		this.props.Alert({show:true, alertText:`Added To Cart`})
+		this.props.Alert({show:true, alertText:`${product.name} Has Been Added To Cart`})
 	}
 	render() {
 		let Items = [];
@@ -58,7 +58,6 @@ class Store extends Component {
 			);
 		}else {
 			return(
-				
 				<Loader/>
 			);
 		}

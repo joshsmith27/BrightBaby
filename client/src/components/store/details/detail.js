@@ -33,7 +33,7 @@ class Details extends Component {
 
 	handleAddToCart(product, quanity){
 		this.props.AddToCart(product, quanity)
-		this.props.Alert({show:true, alertText:`Added To Cart`})
+		this.props.Alert({show:true, alertText:`${product.name} Has Been Added To Cart`})
 	}
 
 	render() {
