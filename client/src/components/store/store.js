@@ -4,6 +4,7 @@ import * as Actions from '../../Redux/actions/action';
 import Loader from '../loading';
 import Item from './item/item';
 
+
 class Store extends Component {
 	constructor(){
 		super()
