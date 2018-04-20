@@ -5,7 +5,7 @@ import SpruceBabyCheckout from './spruce_baby_checkout';
 class Checkout extends Component {
   render(){
       return(
-          <StripeProvider apiKey="">
+          <StripeProvider apiKey="pk_test_mj3oAMnW8TW6P9VpGqFzngLH">
             <SpruceBabyCheckout />
           </StripeProvider>
       );

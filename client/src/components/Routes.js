@@ -7,4 +7,5 @@ import Admin from './admin/admin';
 import AdminItemForm from './admin/adminItemForm/adminItemForm';
 import Nav from './Nav/Nav';
 import AdminLogin from './admin/adminLogin';
-export {ScrollToTop, Home, Store, Details, Cart, Admin, AdminItemForm, Nav, AdminLogin};
+import Checkout from './store/cart/checkout/Checkout_Wizzard'
+export {ScrollToTop, Home, Store, Details, Cart, Admin, AdminItemForm, Nav, AdminLogin, Checkout};

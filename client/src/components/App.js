@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as Actions from '../Redux/actions/action';
 import Alert from'./alert/alert';
-import {ScrollToTop,Home, Store, Details, Cart, Admin, AdminItemForm, Nav, AdminLogin} from './Routes';
+import {ScrollToTop,Home, Store, Details, Cart, Admin, AdminItemForm, Nav, AdminLogin, Checkout} from './Routes';
 import axios from 'axios';
 class App extends Component {
 	componentDidMount(){
@@ -40,9 +40,11 @@ class App extends Component {
 									<Route path="/store" component={Store}/>
 									<Route path="/cart" component={Cart}/> 
 									<Route path="/adminLogin" component={AdminLogin}/> 
+									<Route path="/checkout" component={Checkout} />
 									{adminDetails}
 									{admin}
 									<Route path="/" component={Home}/>
+									
 								</Switch>
 						</ScrollToTop>
 					</Router>

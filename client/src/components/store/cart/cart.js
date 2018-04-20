@@ -3,7 +3,6 @@ import CartItem from './cart_item.js';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import {GetCart, RemoveCartItem, UpdateCartItem} from '../../../Redux/actions/action';
-import Checkout from './checkout/checkout'
 class Cart extends Component {
 
   componentWillMount(){
@@ -38,7 +37,6 @@ class Cart extends Component {
 		}
     return (
       <div className="cart-main-container">
-      <Checkout/>
         <p className="Yellow-Text cart-header">CART</p>
         {CartItems}
         <footer>
