@@ -7,7 +7,6 @@ class Demographics extends Component {
        const state_options = states.states.map((state)=>{
             return <option value={state}>{state}</option>
        })
-       console.log(state_options);
        return (
            <form className="demographics-container">
                 <div>
