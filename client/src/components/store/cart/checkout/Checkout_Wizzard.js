@@ -5,7 +5,8 @@ import PaymentInfo from './Checkout_Wizzard_Components/Stripe_Components/checkou
 class Checkout_Wizzard extends Component {
     render(){
         return(
-            <div>
+            <div className="checkout_wizzard-main-container">
+                <p>Checkout</p>
                 <Route path = {`/checkout/demographics`} component={Demographics}/>
                 <Route path = {`/checkout/paymentinfo`} component={PaymentInfo}/>          
             </div>

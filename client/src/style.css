@@ -562,4 +562,49 @@ button[disabled] {
     .alertContainer .alert p:hover {
       cursor: pointer; }
 
+.checkout_wizzard-main-container {
+  min-width: 350px;
+  width: 33%;
+  margin: auto;
+  padding: 50px 19px 52px; }
+  .checkout_wizzard-main-container .button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 25px; }
+    .checkout_wizzard-main-container .button-container button {
+      font-size: 25px;
+      width: 100px; }
+  .checkout_wizzard-main-container p {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 25px;
+    color: #178e16;
+    font-weight: bold; }
+  .checkout_wizzard-main-container form.demographics-container {
+    margin: auto; }
+    .checkout_wizzard-main-container form.demographics-container .label-container {
+      display: flex;
+      flex-flow: column;
+      margin-bottom: 15px; }
+      .checkout_wizzard-main-container form.demographics-container .label-container input {
+        font-size: 18px;
+        padding: 4px;
+        padding-left: 5px;
+        border: solid 1px black;
+        border-radius: 4px;
+        box-shadow: none;
+        outline: none; }
+      .checkout_wizzard-main-container form.demographics-container .label-container label {
+        font-size: 12px;
+        font-weight: bold; }
+      .checkout_wizzard-main-container form.demographics-container .label-container select {
+        font-size: 18px;
+        padding: 5px;
+        padding-left: 5px;
+        border: solid 1px black;
+        border-radius: 4px;
+        box-shadow: none;
+        outline: none;
+        background: white; }
+
 /*# sourceMappingURL=style.css.map */

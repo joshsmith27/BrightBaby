@@ -5,10 +5,17 @@ import { bindActionCreators} from 'redux';
 import {GetCart, RemoveCartItem, UpdateCartItem} from '../../../Redux/actions/action';
 class Cart extends Component {
 
+  constructor(props){
+    super(props)
+    this.checkout = this.checkout.bind(this);
+  }
+
   componentWillMount(){
     this.props.GetCart()
   }
-
+  checkout(){
+    this.props.history.push('/checkout/demographics')
+  }
   render() {
     let CartItems;
 		if(this.props.cart.products && typeof this.props.cart.products !== 'string' ){
@@ -43,7 +50,7 @@ class Cart extends Component {
           <div>
             <p className="Normal-Text">Total: <span className="Purple-Text">{`$${Number(this.props.cart.subTotal).toFixed(2)}`}</span> </p>
             <br/>
-            <button className="checkoutButton">Check Out</button>
+            <button onClick={this.checkout} className="checkoutButton">Check Out</button>
           </div>
           
         </footer>
