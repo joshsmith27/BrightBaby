@@ -4,11 +4,37 @@ import states from '../states'
 class Demographics extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            firstname: "",
+            lastname:"",
+            email: "",
+            address: "",
+            city:"",
+            state:"",
+            zip:""
+        };
         this.cancel = this.cancel.bind(this);
+        this.next = this.next.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
     cancel(e){
         e.preventDefault()
         this.props.history.push('/cart')
+    }
+    next(e){
+        e.preventDefault();
+        for(var item in this.state){
+            if(!this.state[item]){
+                this.refs[item].className = `label-container error`
+            }
+        }
+        // this.props.history.push('/checkout/paymentinfo');
+    }
+
+    handleClick(e){
+        if(this.refs[e.target.name]){
+            this.refs[e.target.name].className = `label-container`
+        }
     }
    render(){
        const state_options = states.states.map((state, i)=>{
@@ -16,42 +42,42 @@ class Demographics extends Component {
        })
       
        return (
-           <form className="demographics-container">
-                <div className="label-container">
+           <div className="demographics-container">
+                <div onClick={this.handleClick} ref="firstname" className="label-container">
                     <label>First Name</label>
-                    <input type="text"/>
+                    <input name="firstname" type="text"/>
                 </div>
-                <div className="label-container">
+                <div onClick={this.handleClick} ref="lastname" className="label-container">
                     <label>Last Name</label>
-                    <input type="text"/>
+                    <input name="lastname" type="text"/>
                 </div>
-                <div className="label-container">
+                <div onClick={this.handleClick} ref="email" className="label-container">
                     <label>Email</label>
-                    <input type="text"/>
+                    <input name="email" type="text"/>
                 </div>
-                <div className="label-container">
+                <div onClick={this.handleClick} ref="address" className="label-container">
                     <label>Address</label>
-                    <input type="text"/>
+                    <input name="address" type="text"/>
                 </div>
-                <div className="label-container">
+                <div onClick={this.handleClick} ref="city" className="label-container">
                     <label>City</label>
-                    <input type="text"/>
+                    <input name="city" type="text"/>
                 </div>
-                <div className="label-container">
+                <div onClick={this.handleClick} ref="state" className="label-container">
                     <label>State</label>
-                    <select>
+                    <select name="state">
                         {state_options}
                     </select>
                 </div>
-                <div className="label-container">
+                <div onClick={this.handleClick} ref="zip" className="label-container">
                     <label>Zip</label>
-                    <input type="text"/>
+                    <input name="zip" type="text"/>
                 </div>
                 <div className="button-container">
                     <button onClick={this.cancel}>Cancel</button>
-                    <button>Next</button>
+                    <button onClick={this.next}>Next</button>
                 </div>
-           </form>
+           </div>
        )
    } 
 }

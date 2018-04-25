@@ -580,13 +580,13 @@ button[disabled] {
     font-size: 25px;
     color: #178e16;
     font-weight: bold; }
-  .checkout_wizzard-main-container form.demographics-container {
+  .checkout_wizzard-main-container .demographics-container {
     margin: auto; }
-    .checkout_wizzard-main-container form.demographics-container .label-container {
+    .checkout_wizzard-main-container .demographics-container .label-container {
       display: flex;
       flex-flow: column;
       margin-bottom: 15px; }
-      .checkout_wizzard-main-container form.demographics-container .label-container input {
+      .checkout_wizzard-main-container .demographics-container .label-container input {
         font-size: 18px;
         padding: 4px;
         padding-left: 5px;
@@ -594,10 +594,10 @@ button[disabled] {
         border-radius: 4px;
         box-shadow: none;
         outline: none; }
-      .checkout_wizzard-main-container form.demographics-container .label-container label {
+      .checkout_wizzard-main-container .demographics-container .label-container label {
         font-size: 12px;
         font-weight: bold; }
-      .checkout_wizzard-main-container form.demographics-container .label-container select {
+      .checkout_wizzard-main-container .demographics-container .label-container select {
         font-size: 18px;
         padding: 5px;
         padding-left: 5px;
@@ -606,5 +606,13 @@ button[disabled] {
         box-shadow: none;
         outline: none;
         background: white; }
+    .checkout_wizzard-main-container .demographics-container .error label {
+      color: #db5757; }
+    .checkout_wizzard-main-container .demographics-container .error input {
+      border: #db5757 solid 1px;
+      color: #db5757; }
+    .checkout_wizzard-main-container .demographics-container .error select {
+      border: #db5757 solid 1px;
+      color: #db5757; }
 
 /*# sourceMappingURL=style.css.map */

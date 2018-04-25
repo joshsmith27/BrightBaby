@@ -19,7 +19,7 @@
         color: #178e16;
         font-weight: bold;
     }
-    form.demographics-container {
+    .demographics-container {
         margin: auto;
         .label-container {
             display: flex;
@@ -47,6 +47,19 @@
                 box-shadow: none;
                 outline: none;
                 background: white;
+            }
+        }
+        .error {
+            label {
+                color: $error-color;
+            }
+            input {
+                border: $error-color solid 1px;
+                color: $error-color;
+            }
+            select {
+                border: $error-color solid 1px;
+                color: $error-color;
             }
         }
     }
