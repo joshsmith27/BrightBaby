@@ -16,6 +16,7 @@ class Demographics extends Component {
         this.cancel = this.cancel.bind(this);
         this.next = this.next.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
     cancel(e){
         e.preventDefault()
@@ -28,9 +29,13 @@ class Demographics extends Component {
                 this.refs[item].className = `label-container error`
             }
         }
-        // this.props.history.push('/checkout/paymentinfo');
+        this.props.history.push('/checkout/paymentinfo');
     }
-
+    handleChange(e){
+        this.setState({
+            [e.target.name]: [e.target.value]
+        })
+    }
     handleClick(e){
         if(this.refs[e.target.name]){
             this.refs[e.target.name].className = `label-container`
@@ -45,33 +50,33 @@ class Demographics extends Component {
            <div className="demographics-container">
                 <div onClick={this.handleClick} ref="firstname" className="label-container">
                     <label>First Name</label>
-                    <input name="firstname" type="text"/>
+                    <input value={this.state.firstname} onChange={this.handleChange} name="firstname" type="text"/>
                 </div>
                 <div onClick={this.handleClick} ref="lastname" className="label-container">
                     <label>Last Name</label>
-                    <input name="lastname" type="text"/>
+                    <input value={this.state.lastname} onChange={this.handleChange} name="lastname" type="text"/>
                 </div>
                 <div onClick={this.handleClick} ref="email" className="label-container">
                     <label>Email</label>
-                    <input name="email" type="text"/>
+                    <input value={this.state.email} onChange={this.handleChange} name="email" type="text"/>
                 </div>
                 <div onClick={this.handleClick} ref="address" className="label-container">
                     <label>Address</label>
-                    <input name="address" type="text"/>
+                    <input value={this.state.address} onChange={this.handleChange} name="address" type="text"/>
                 </div>
                 <div onClick={this.handleClick} ref="city" className="label-container">
                     <label>City</label>
-                    <input name="city" type="text"/>
+                    <input value={this.state.city} onChange={this.handleChange} name="city" type="text"/>
                 </div>
                 <div onClick={this.handleClick} ref="state" className="label-container">
                     <label>State</label>
-                    <select name="state">
+                    <select value={this.state.state} onChange={this.handleChange} name="state">
                         {state_options}
                     </select>
                 </div>
                 <div onClick={this.handleClick} ref="zip" className="label-container">
                     <label>Zip</label>
-                    <input name="zip" type="text"/>
+                    <input value={this.state.zip} onChange={this.handleChange} name="zip" type="text"/>
                 </div>
                 <div className="button-container">
                     <button onClick={this.cancel}>Cancel</button>
