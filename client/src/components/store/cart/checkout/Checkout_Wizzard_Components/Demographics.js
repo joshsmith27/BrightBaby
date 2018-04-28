@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import states from '../states'
-
+import * as Actions from '../../../../../Redux/actions/action';
+import {connect} from 'react-redux';
 class Demographics extends Component {
     constructor(props){
         super(props);
         this.state = {
-            firstname: "",
-            lastname:"",
-            email: "",
-            address: "",
-            city:"",
-            state:"",
-            zip:""
+            firstname: this.props.checkout.firstname,
+            lastname:this.props.checkout.lastname,
+            email: this.props.checkout.email,
+            address: this.props.checkout.address,
+            city:this.props.checkout.city,
+            state:this.props.checkout.state,
+            zip:this.props.checkout.zip
         };
         this.cancel = this.cancel.bind(this);
         this.next = this.next.bind(this);
@@ -29,11 +30,12 @@ class Demographics extends Component {
                 this.refs[item].className = `label-container error`
             }
         }
+        this.props.AddDemographics(this.state);
         this.props.history.push('/checkout/paymentinfo');
     }
     handleChange(e){
         this.setState({
-            [e.target.name]: [e.target.value]
+            [e.target.name]: e.target.value
         })
     }
     handleClick(e){
@@ -86,4 +88,4 @@ class Demographics extends Component {
        )
    } 
 }
-export default Demographics;
+export default connect(state => state, Actions)(Demographics);
