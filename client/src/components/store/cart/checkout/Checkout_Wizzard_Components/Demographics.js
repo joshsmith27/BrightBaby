@@ -25,13 +25,17 @@ class Demographics extends Component {
     }
     next(e){
         e.preventDefault();
+        let hasError = false;
         for(var item in this.state){
             if(!this.state[item]){
                 this.refs[item].className = `label-container error`
+                hasError = true
             }
         }
-        this.props.AddDemographics(this.state);
-        this.props.history.push('/checkout/paymentinfo');
+        if(!hasError){
+            this.props.AddDemographics(this.state);
+            this.props.history.push('/checkout/paymentinfo');
+        }
     }
     handleChange(e){
         this.setState({

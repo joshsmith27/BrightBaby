@@ -2,11 +2,13 @@
  const initialState = {
      firstname:'',
      lastname:'',
+     email: '',
      address:'',
      address2:'',
      city:'',
      state:'',
      zip:'',
+     paymentId:''
  }
  export const checkout = (state = initialState, action)=>{
     switch(action.type){

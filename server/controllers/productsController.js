@@ -88,7 +88,13 @@ module.exports = {
 			})
 			.then((images)=>{
 				if(ProductImages.length > 0){
+					var change = ProductImages.reduce((bool, image)=>{
+						if(image.isdefault){
+							return bool = true;
+						}
+					}, false)
 					let imageIds = images.map((image)=>{
+						if()
 						return image.imageid
 					})
 					ProductImages.forEach((image)=>{
