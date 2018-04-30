@@ -25,5 +25,18 @@ module.exports= {
                 }); 
         });           
     },
-
+    checkForDefault(images){
+        const hasDefault = images.reduce((bool, image)=>{
+            if(image.isDefault){
+                bool = true;
+            }
+            return bool;
+        }, false)
+        if(hasDefault){
+            return images;
+        }else{
+            images[0].isdefault = true;
+            return images;
+        }
+    }
 }

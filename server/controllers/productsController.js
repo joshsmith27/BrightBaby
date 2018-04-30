@@ -1,5 +1,6 @@
 const {dbGetter} = require('../services/db')
-const {getProducts} = require('../services/products')
+const {getProducts, checkForDefault} = require('../services/products')
+
 module.exports = {
 	getProducts: ( req, res, next ) => {
         if (!req.user){
@@ -54,17 +55,17 @@ module.exports = {
 
     postProduct: ( req, res, next ) => {
         let {Name, Price, Description, MoreInformation, Quanity, ProductImages, IsHomeProduct} = req.body;
-		let data = [Name, Price, Description, MoreInformation, Quanity, IsHomeProduct];
+		let data = {name:Name, price:Price, description:Description, moreinformation:MoreInformation, avaliablequantity:Quanity, ishomeproduct:IsHomeProduct};
 		const dbInstance = dbGetter(req);
-		if(req.params.id < 1){
-			dbInstance.ProductStoreProcedures.create_product(data)
-			//Todo use massive helper functions. 
-			.then(product => { 
-				return dbInstance.ProductStoreProcedures.get_newest_product()})
+		if(Number(req.params.id) <= 0){
+			dbInstance.product.insert(data)
 			.then(product => {
-				ProductImages.map((image)=>{
-					dbInstance.ProductStoreProcedures.add_image([product[0].productid, image.imagepath, image.isdefault])})
+				ProductImages = checkForDefault(ProductImages);
+				const images = ProductImages.map((image)=>{
+					return dbInstance.productimages.insert({productid:product.productid, imagepath:image.imagepath, is_default:image.isdefault})
 				})
+				return Promise.all(images)
+			})
 			.then(product => {
 				return getProducts('0', req)
 				})
@@ -76,28 +77,35 @@ module.exports = {
 				res.status(500).send(err);
 			});
 		}else{
-			let {Name, Price, Description, MoreInformation, Quanity, ProductImages, IsHomeProduct} = req.body;
-			let data = [req.params.id, Name, Price, Description, MoreInformation, Quanity, IsHomeProduct];
 			let productInfo ={}
-            dbInstance.ProductStoreProcedures.update_product(data)
+            dbInstance.product.update(data)
 			.then(product => { 
-				return dbInstance.ProductStoreProcedures.get_details(req.params.id)})	
-			.then(product => { 
-				productInfo.productid = product[0].productid
-				return dbInstance.ProductStoreProcedures.get_product_images(req.params.id)
+				productInfo.productid = product.productid
+				return dbInstance.productimages.find({productid:product.productid});
 			})
 			.then((images)=>{
 				if(ProductImages.length > 0){
-					var change = ProductImages.reduce((bool, image)=>{
+					var changeDefault = ProductImages.reduce((bool, image)=>{
 						if(image.isdefault){
-							return bool = true;
+							bool = true;
+							return bool; 
 						}
+						return bool;
 					}, false)
 					let imageIds = images.map((image)=>{
-						if()
+						if(changeDefault){
+							image.is_default = false;
+							ProductImages.push(image)
+						}
 						return image.imageid
 					})
+					if(changeDefault){
+						ProductImages = ProductImages.filter((image, index, arr)=>{
+							return arr.indexOf(index).imagesId !== image.imageId
+						})
+					}
 					ProductImages.forEach((image)=>{
+
 						if(imageIds.includes(image.imageid)){
 							dbInstance.ProductStoreProcedures.update_image([image.productid, image.imageid, image.imagepath, image.isdefault])
 						}else if(images.length < 3){
