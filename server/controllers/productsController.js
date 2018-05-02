@@ -1,5 +1,5 @@
 const {dbGetter} = require('../services/db')
-const {getProducts, checkForDefault} = require('../services/products')
+const {getProducts, checkForDefault, changeDefaultFunc} = require('../services/products')
 
 module.exports = {
 	getProducts: ( req, res, next ) => {
@@ -78,12 +78,15 @@ module.exports = {
 			});
 		}else{
 			let productInfo ={}
-            dbInstance.product.update(data)
+            dbInstance.product.update({...data, productid: req.params.id})
 			.then(product => { 
 				productInfo.productid = product.productid
 				return dbInstance.productimages.find({productid:product.productid});
 			})
 			.then((images)=>{
+				const imageIds = images.map((image)=>{
+					return image.imageid;
+				})
 				if(ProductImages.length > 0){
 					var changeDefault = ProductImages.reduce((bool, image)=>{
 						if(image.isdefault){
@@ -92,20 +95,10 @@ module.exports = {
 						}
 						return bool;
 					}, false)
-					let imageIds = images.map((image)=>{
-						if(changeDefault){
-							image.is_default = false;
-							ProductImages.push(image)
-						}
-						return image.imageid
-					})
 					if(changeDefault){
-						ProductImages = ProductImages.filter((image, index, arr)=>{
-							return arr.indexOf(index).imagesId !== image.imageId
-						})
+						ProductImages = changeDefaultFunc(ProductImages, images);
 					}
 					ProductImages.forEach((image)=>{
-
 						if(imageIds.includes(image.imageid)){
 							dbInstance.ProductStoreProcedures.update_image([image.productid, image.imageid, image.imagepath, image.isdefault])
 						}else if(images.length < 3){

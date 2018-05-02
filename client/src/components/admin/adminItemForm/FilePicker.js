@@ -148,6 +148,7 @@ class FilePicker extends Component {
   }
 
   makeDefault(){
+    debugger
     const saveImages = this.state.saveImages.map((image, i)=>{
         if(Number(this.state.previousSavedRef.replace(/\D/g,'')) === i){
           image.isdefault = true;

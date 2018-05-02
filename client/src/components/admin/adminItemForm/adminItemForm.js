@@ -54,7 +54,6 @@ class AdminItemForm extends Component {
 		})
 	}
 	deleteProduct(){
-		debugger
 		axios.delete(`/api/products/delete/${this.props.match.params.id}`)
 			.then(()=>{
 				debugger

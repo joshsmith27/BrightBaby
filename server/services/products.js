@@ -38,5 +38,22 @@ module.exports= {
             images[0].isdefault = true;
             return images;
         }
+    },
+    changeDefaultFunc(feArr, dbArr){
+        let rtn = [];
+        const feArrIds = feArr.map((image)=>{
+            return image.imageid;
+        })
+        dbArr = dbArr.map((image)=>{
+            image.isdefault  = image.is_default;
+            return image;
+        })
+        dbArr.forEach((el)=>{
+            if(!feArrIds.includes(el.imageid)){
+                el.isdefault = false;
+                rtn.push(el);
+            }
+        })
+        return [...rtn, ...feArr];
     }
 }
