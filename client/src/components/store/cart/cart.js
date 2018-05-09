@@ -18,7 +18,7 @@ class Cart extends Component {
   }
   render() {
     let CartItems;
-    let checkoutButton = this.state.total
+    // let checkoutButton = this.state.total
 		if(this.props.cart.products && typeof this.props.cart.products !== 'string' ){
       console.log(this.props)
 			CartItems = this.props.cart.products.map((e, i)=>{
