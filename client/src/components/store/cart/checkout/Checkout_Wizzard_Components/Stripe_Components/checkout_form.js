@@ -14,7 +14,7 @@ class CheckoutForm extends Component {
       // tokenize, since there's only one in this group.
       this.props.stripe.createToken({name: `${this.props.checkout.firstname} ${this.props.checkout.lastname}` })
         .then(({token}) => {
-          this.props.payment.
+          this.props.checkout.token = token;
           this.props.Add_Payment()
           console.log('Received Stripe token:', token);
         });

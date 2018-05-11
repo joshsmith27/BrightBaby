@@ -20,3 +20,9 @@ export function cart (state = {products:[], subTotal: 0}, action){
 		    return state;
 	}
 }
+export const canCheckout =  ( state=false, action)=>{
+	if(action.type === GET_USER_CART && action.payload.products.length > 0){
+		state = true;
+	}
+	return state
+}

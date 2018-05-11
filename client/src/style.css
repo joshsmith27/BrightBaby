@@ -208,10 +208,10 @@ button[disabled] {
     width: 100%;
     display: flex;
     position: fixed;
-    height: 100px;
+    height: 80px;
     background: transparent;
     justify-content: flex-end;
-    bottom: -20px;
+    bottom: -12px;
     left: -49px; }
 
 .store-main-container {

@@ -25,7 +25,6 @@ class Admin extends Component {
 logOut(){
   axios.get(`/api/userAdmin/logout`)
   .then(()=>{
-    debugger
     this.props.ChangeAdmin(false);
   })
 }

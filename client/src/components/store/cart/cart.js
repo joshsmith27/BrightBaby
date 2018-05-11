@@ -7,6 +7,9 @@ class Cart extends Component {
 
   constructor(props){
     super(props)
+    this.state = {
+      checkoutOn: false,
+    }
     this.checkout = this.checkout.bind(this);
   }
 
@@ -18,7 +21,7 @@ class Cart extends Component {
   }
   render() {
     let CartItems;
-    let checkoutButton = this.state.total
+    let checkoutButton = this.props.canCheckout > 0 ? <button onClick={this.checkout} className="checkoutButton">Check Out</button> : <button disabled onClick={this.checkout} className="checkoutButton">Check Out</button>
 		if(this.props.cart.products && typeof this.props.cart.products !== 'string' ){
       console.log(this.props)
 			CartItems = this.props.cart.products.map((e, i)=>{
@@ -51,7 +54,7 @@ class Cart extends Component {
           <div>
             <p className="Normal-Text">Total: <span className="Purple-Text">{`$${Number(this.props.cart.subTotal).toFixed(2)}`}</span> </p>
             <br/>
-            <button onClick={this.checkout} className="checkoutButton">Check Out</button>
+            {checkoutButton}
           </div>
           
         </footer>
@@ -60,12 +63,9 @@ class Cart extends Component {
   }
 }
 
-function mapStateToProps({cart}){
-	return {cart};
-}
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({GetCart, RemoveCartItem, UpdateCartItem}, dispatch);
 }
   
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(state => state, mapDispatchToProps)(Cart);
 

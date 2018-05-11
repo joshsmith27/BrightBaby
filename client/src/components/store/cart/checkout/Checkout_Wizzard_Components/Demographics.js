@@ -54,6 +54,10 @@ class Demographics extends Component {
       
        return (
            <div className="demographics-container">
+                <div onClick={this.handleClick} ref="email" className="label-container">
+                    <label>Email</label>
+                    <input value={this.state.email} onChange={this.handleChange} name="email" type="text"/>
+                </div>
                 <div onClick={this.handleClick} ref="firstname" className="label-container">
                     <label>First Name</label>
                     <input value={this.state.firstname} onChange={this.handleChange} name="firstname" type="text"/>
@@ -62,10 +66,7 @@ class Demographics extends Component {
                     <label>Last Name</label>
                     <input value={this.state.lastname} onChange={this.handleChange} name="lastname" type="text"/>
                 </div>
-                <div onClick={this.handleClick} ref="email" className="label-container">
-                    <label>Email</label>
-                    <input value={this.state.email} onChange={this.handleChange} name="email" type="text"/>
-                </div>
+
                 <div onClick={this.handleClick} ref="address" className="label-container">
                     <label>Address</label>
                     <input value={this.state.address} onChange={this.handleChange} name="address" type="text"/>
