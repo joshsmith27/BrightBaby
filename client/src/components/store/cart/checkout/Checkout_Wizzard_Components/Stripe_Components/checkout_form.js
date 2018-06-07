@@ -14,9 +14,9 @@ class CheckoutForm extends Component {
       // tokenize, since there's only one in this group.
       this.props.stripe.createToken({name: `${this.props.checkout.firstname} ${this.props.checkout.lastname}` })
         .then(({token}) => {
-          this.props.checkout.token = token;
-          this.props.Add_Payment()
-          console.log('Received Stripe token:', token);
+          debugger
+          this.props.checkout.token = token.id;
+          this.props.AddPayment(this.props.checkout)
         });
   
       // However, this line of code will do the same thing:
@@ -31,7 +31,7 @@ class CheckoutForm extends Component {
             <Link to={`/checkout/demographics`}>
               <button >Back</button>
             </Link>
-            <button>Submit</button>
+            <button>Next</button>
           </div>
         </form>
       );
